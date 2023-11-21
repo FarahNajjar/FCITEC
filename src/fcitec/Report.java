@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package fcitec;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  *
@@ -115,4 +112,31 @@ class Report {
             Report Info = new Report(213, "124F", "PANIC ATTACK", " new ");
             reports.add(Info); 
     }
+     
+    // Method to delete a report from the linked list and file based on its ID
+    static void deleteReport(int reportId) {
+    int index = -1;
+    for (int i = 0; i < reports.size(); i++) {
+        if (reports.get(i).equals(reportId)) {
+            index = i;
+            break;
+        }
+    }
+
+    if (index != -1) {
+        reports.remove(index);
+        System.out.println("Report with ID " + reportId + " has been deleted.");
+    } else {
+        System.out.println("Report with ID " + reportId + " not found.");
+    }
+
+    }
 }
+    
+     
+     
+     
+     
+     
+     
+     
