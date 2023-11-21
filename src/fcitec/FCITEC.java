@@ -18,6 +18,14 @@ public class FCITEC {
         // TODO code application logic here
         Report.AddReport();
         User.displayReports();
+      
+        
+        
+ 
+       
+          
+        
+       
     }
  
 }
