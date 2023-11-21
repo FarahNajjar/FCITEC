@@ -16,6 +16,29 @@ public class FCITEC {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Report.AddReport();
+        User.displayReports();
     }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
