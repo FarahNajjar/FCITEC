@@ -7,20 +7,21 @@ package fcitec;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.jar.Attributes.Name;
+
 
 /**
  *
  * @author njood
  */
-public class AddReport {
+public class Report {
     
    static void AddReport(String studentInfo){
      try {
             FileWriter myWriter = new FileWriter("AddReport.txt");
             myWriter.write("name: " + studentInfo
-                           + " \n emial address: " + studentInfo
-                           + "\n ID: " + studentInfo);
+                           + " \n phone number: " + studentInfo
+                           + " \n Location: " + studentInfo
+                           + "\n Status description: " + studentInfo);
             myWriter.close();
             System.out.println("\nReport has been added.");
         } catch (IOException e1) {
