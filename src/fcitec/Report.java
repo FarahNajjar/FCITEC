@@ -5,9 +5,8 @@
  */
 package fcitec;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -21,6 +20,11 @@ class Report {
     private String location;
     private String description;
     private String reportStatus;
+    private String studentName;
+    private int PhoneNumber;
+    private String Location;
+    private String StatusDescription;
+
 
     public Report(int reportNumber, String location, String description, String reportStatus) {
         this.reportNumber = reportNumber;
@@ -29,6 +33,42 @@ class Report {
         this.reportStatus = reportStatus;
     }
 
+    public Report(String location, String studentName, int PhoneNumber, String StatusDescription) {
+        this.location = location;
+        this.description = description;
+        this.studentName = studentName;
+        this.PhoneNumber = PhoneNumber;
+        this.StatusDescription = StatusDescription;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public int getPhoneNumber() {
+        return PhoneNumber;
+    }
+
+    public void setPhoneNumber(int PhoneNumber) {
+        this.PhoneNumber = PhoneNumber;
+    }
+
+    public String getStatusDescription() {
+        return StatusDescription;
+    }
+
+    public void setStatusDescription(String StatusDescription) {
+        this.StatusDescription = StatusDescription;
+    }
+
+    
+    
+
+   
     /**
      * @return the reportNumber
      */
@@ -99,20 +139,24 @@ class Report {
         reports.add(report);
     }
 
-    static void AddReport(String studentInfo) {
-        try {
-            FileWriter myWriter = new FileWriter("AddReport.txt");
-            myWriter.write("name: " + studentInfo
-                    + " \n emial address: " + studentInfo
-                    + "\n ID: " + studentInfo);
-            myWriter.close();
-            System.out.println("\nReport has been added.");
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
+    public static void AddReport(String studentInfo) {
+        
+        Scanner input = new Scanner(System.in);
+        System.out.print("studentName: " +studentInfo );
+        String studentName = input.next();
+        System.out.print("Phone number: " + studentInfo);
+        int PhoneNumber = input.nextInt();
+        System.out.print("Location: " + studentInfo);
+        String Location = input.next();
+        System.out.print("Status Description: " + studentInfo);
+        String StatusDescription = input.next();
+
+        System.out.println("\nReport has been added.");
+       
     }
-     static void AddReport() {
-            Report Info = new Report(213, "124F", "PANIC ATTACK", " new ");
-            reports.add(Info); 
+
+    static void AddReport() {
+        Report Info = new Report(213, "124F", "PANIC ATTACK", " new ");
+        reports.add(Info);
     }
 }
