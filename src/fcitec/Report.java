@@ -113,25 +113,19 @@ class Report {
             reports.add(Info); 
     }
      
-    // Method to delete a report from the linked list and file based on its ID
-    static void deleteReport(int reportId) {
-    int index = -1;
-    for (int i = 0; i < reports.size(); i++) {
-        if (reports.get(i).equals(reportId)) {
-            index = i;
-            break;
+   // Method to delete a report from the array list 
+    public static void deleteReport(ArrayList<Report> reoprt,int reportNumber) {
+        for (Report R : reports) {
+            if (R.getReportNumber() == reportNumber) {
+                reoprt.remove(R);
+                System.out.println("Report with ID " + reportNumber + " has been deleted.");
+            }else {
+        System.out.println("Report with ID " + reportNumber  + " not found.");
+            }   
         }
     }
-
-    if (index != -1) {
-        reports.remove(index);
-        System.out.println("Report with ID " + reportId + " has been deleted.");
-    } else {
-        System.out.println("Report with ID " + reportId + " not found.");
-    }
-
-    }
 }
+
     
      
      
