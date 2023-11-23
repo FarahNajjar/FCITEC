@@ -1,4 +1,3 @@
-
 package fcitec;
 
 import java.util.ArrayList;
@@ -6,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import java.util.LinkedList;
-
 
 /**
  *
@@ -24,7 +22,6 @@ class Report {
     private int PhoneNumber;
     private String Location;
     private String StatusDescription;
-
 
     public Report(int reportNumber, String location, String description, String reportStatus) {
         this.reportNumber = reportNumber;
@@ -65,10 +62,6 @@ class Report {
         this.StatusDescription = StatusDescription;
     }
 
-    
-    
-
-   
     /**
      * @return the reportNumber
      */
@@ -139,24 +132,54 @@ class Report {
         reports.add(report);
     }
 
-    public static void AddReport(String studentInfo) {
-        
+    public static void AddReport() {
         Scanner input = new Scanner(System.in);
-        System.out.print("studentName: " +studentInfo );
+
+        System.out.print("studentName: ");
         String studentName = input.next();
-        System.out.print("Phone number: " + studentInfo);
+
+        System.out.print("Phone number: ");
         int PhoneNumber = input.nextInt();
-        System.out.print("Location: " + studentInfo);
+
+        System.out.print("Location: ");
         String Location = input.next();
-        System.out.print("Status Description: " + studentInfo);
+
+        System.out.print("Status Description: ");
         String StatusDescription = input.next();
 
+        Report Info = new Report(FCITEC.IDCounter, "124F", "PANIC ATTACK", "new");
+        reports.add(Info);
+
+        FCITEC.IDCounter++; // Increment IDCounter
+
         System.out.println("\nReport has been added.");
-       
     }
 
-    static void AddReport() {
-        Report Info = new Report(213, "124F", "PANIC ATTACK", " new ");
-        reports.add(Info);
+    public static void displayReports(int UserID) {
+        System.out.println("------------------------- Report Details -------------------------");
+
+        String userIDString = String.valueOf(UserID);
+
+        if (userIDString.charAt(0) == '0') {
+            // Print all reports if the first character of the userIDString is '0' means ADMIN
+            for (Report report : Report.getReports()) {
+                System.out.println("Report Number: " + report.getReportNumber()
+                        + "\nLocation: " + report.getLocation()
+                        + "\nDescription: " + report.getDescription()
+                        + "\nReport Status: " + report.getReportStatus());
+                System.out.println("\n----------------------------------------------------------------\n");
+            }
+        } else {
+            // Print only the reports corresponding to the provided UserID
+            for (Report report : Report.getReports()) {
+                if (report.getUserID() == UserID) {
+                    System.out.println("Report Number: " + report.getReportNumber()
+                            + "\nLocation: " + report.getLocation()
+                            + "\nDescription: " + report.getDescription()
+                            + "\nReport Status: " + report.getReportStatus());
+                    System.out.println("\n----------------------------------------------------------------\n");
+                }
+            }
+        }
     }
 }

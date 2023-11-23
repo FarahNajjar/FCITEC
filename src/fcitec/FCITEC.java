@@ -5,18 +5,17 @@ package fcitec;
  *
  * @author FARAH
  */
+
 public class FCITEC {
 
-    /**
-     * @param args the command line arguments
-     */
+    static int IDCounter = 1;
+
     public static void main(String[] args) {
         // TODO code application logic here
-        Report.AddReport();
-        User.displayReports();
-        
-        
+         Report.AddReport();
+         User.displayReports();
+         Report.AddReport();
+         User.displayReports();
 
- 
-}
+  }
 }
