@@ -139,24 +139,22 @@ class Report {
         reports.add(report);
     }
 
-    public static void AddReport(String studentInfo) {
-        
-        Scanner input = new Scanner(System.in);
-        System.out.print("studentName: " +studentInfo );
-        String studentName = input.next();
-        System.out.print("Phone number: " + studentInfo);
-        int PhoneNumber = input.nextInt();
-        System.out.print("Location: " + studentInfo);
-        String Location = input.next();
-        System.out.print("Status Description: " + studentInfo);
-        String StatusDescription = input.next();
-
-        System.out.println("\nReport has been added.");
+    public static void AddReport() {
        
-    }
-
-    static void AddReport() {
-        Report Info = new Report(213, "124F", "PANIC ATTACK", " new ");
-        reports.add(Info);
+        Scanner input = new Scanner(System.in);
+        System.out.print("studentName: ");
+        String studentName = input.next();
+        System.out.print("Phone nnmber: ");
+        int PhoneNumber = input.nextInt();
+        System.out.print("Location: " );
+        String Location = input.next();
+        System.out.print("Status Description: ");
+        String StatusDescription = input.next();
+        
+        System.out.println("\nReport has been added.");
     }
 }
+         
+    
+
+    
