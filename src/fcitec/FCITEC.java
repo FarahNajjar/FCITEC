@@ -1,6 +1,8 @@
 
 package fcitec;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author FARAH
@@ -14,7 +16,11 @@ public class FCITEC {
         // TODO code application logic here
         Report.AddReport();
         User.displayReports();
-        Report.deleteReport(213);
-    }
- 
+
+
+        //call method delete 
+         ArrayList<Report> reportList = new ArrayList<>();
+         Report.deleteReport(reportList,213);
+}
+
 }
