@@ -94,6 +94,7 @@ class Report {
         reports.add(report);
     }
 
+<<<<<<< HEAD
     public static void AddReport() {
         Scanner input = new Scanner(System.in);
 
@@ -116,7 +117,45 @@ class Report {
 
         System.out.println("\nReport has been added.");
     }
+=======
 
+//    static void AddReport(String studentInfo) {
+//        try {
+//            FileWriter myWriter = new FileWriter("AddReport.txt");
+//            myWriter.write("name: " + studentInfo
+//                    + " \n emial address: " + studentInfo
+//                    + "\n ID: " + studentInfo);
+//            myWriter.close();
+//            System.out.println("\nReport has been added.");
+//        } catch (IOException e1) {
+//            e1.printStackTrace();
+//        }
+//    }
+//     static void AddReport() {
+//            Report Info = new Report(213, "124F", "PANIC ATTACK", " new ");
+//            reports.add(Info); 
+//    
+//     }
+     
+   
+        
+    
+    public static void AddReport() {
+       
+        Scanner input = new Scanner(System.in);
+        System.out.print("studentName: ");
+        String studentName = input.next();
+        System.out.print("Phone nnmber: ");
+        int PhoneNumber = input.nextInt();
+        System.out.print("Location: " );
+        String Location = input.next();
+        System.out.print("Status Description: ");
+        String StatusDescription = input.next();
+        
+        System.out.println("\nReport has been added.");
+>>>>>>> origin/master
+
+<<<<<<< HEAD
     public static void displayReports(int userID) {
         System.out.println("------------------------- Report Details -------------------------");
 
@@ -143,7 +182,10 @@ class Report {
                 }
             }
         }
+=======
+>>>>>>> origin/master
     }
+<<<<<<< HEAD
 
     public static void deleteReport(ArrayList<Report> reports, int reportNumber) {
         boolean found = false;
@@ -163,3 +205,25 @@ class Report {
     }
     
 }
+=======
+    // Method to delete a report from the array list 
+    public static void deleteReport(ArrayList<Report> reoprt,int reportNumber) {
+        for (Report R : reports) {
+            if (R.getReportNumber() == reportNumber) {
+                reoprt.remove(R);
+                System.out.println("Report with ID " + reportNumber + " has been deleted.");
+            }else {
+        System.out.println("Report with ID " + reportNumber  + " not found.");
+            } 
+        }
+    
+
+    }
+}
+         
+    
+    
+    
+
+
+>>>>>>> origin/master
