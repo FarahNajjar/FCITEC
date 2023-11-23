@@ -18,6 +18,7 @@ public class FCITEC {
         User.displayReports();
 
 
+
         //call method delete 
          ArrayList<Report> reportList = new ArrayList<>();
          Report.deleteReport(reportList,213);
