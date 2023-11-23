@@ -1,8 +1,6 @@
 
 package fcitec;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import java.util.Scanner;
@@ -141,6 +139,7 @@ class Report {
         reports.add(report);
     }
 
+
 //    static void AddReport(String studentInfo) {
 //        try {
 //            FileWriter myWriter = new FileWriter("AddReport.txt");
@@ -187,13 +186,13 @@ class Report {
         System.out.println("Report with ID " + reportNumber  + " not found.");
             } 
         }
+    
+
     }
 }
+         
     
     
     
 
 
-
-
-    
