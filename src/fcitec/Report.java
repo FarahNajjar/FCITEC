@@ -1,4 +1,3 @@
-
 package fcitec;
 
 import java.util.ArrayList;
@@ -65,10 +64,6 @@ class Report {
         this.StatusDescription = StatusDescription;
     }
 
-    
-    
-
-   
     /**
      * @return the reportNumber
      */
@@ -155,8 +150,8 @@ class Report {
        
     }
 
-    static void AddReport() {
-        Report Info = new Report(213, "124F", "PANIC ATTACK", " new ");
-        reports.add(Info);
-    }
+//    static void AddReport() {
+//        Report Info = new Report(213, "124F", "PANIC ATTACK", " new ");
+//        reports.add(Info);
+//    }
 }
