@@ -1,6 +1,8 @@
 
 package fcitec;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author FARAH
@@ -12,10 +14,6 @@ public class FCITEC {
 
     public static void main(String[] args) {
         // TODO code application logic here
-         Report.AddReport();
-         User.displayReports();
-         Report.AddReport();
-         User.displayReports();
-
+        Report.AddReport();
   }
 }

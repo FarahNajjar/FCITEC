@@ -1,27 +1,20 @@
 package fcitec;
 
 import java.util.ArrayList;
-
 import java.util.Scanner;
 
-import java.util.LinkedList;
-
-/**
- *
- * @author njood
- */
 class Report {
 
     private static ArrayList<Report> reports = new ArrayList<>();
+    private static int IDCounter = 1;
 
     private int reportNumber;
     private String location;
     private String description;
     private String reportStatus;
     private String studentName;
-    private int PhoneNumber;
-    private String Location;
-    private String StatusDescription;
+    private int phoneNumber;
+    private String statusDescription;
 
     public Report(int reportNumber, String location, String description, String reportStatus) {
         this.reportNumber = reportNumber;
@@ -30,12 +23,11 @@ class Report {
         this.reportStatus = reportStatus;
     }
 
-    public Report(String location, String studentName, int PhoneNumber, String StatusDescription) {
+    public Report(String location, String studentName, int phoneNumber, String statusDescription) {
         this.location = location;
-        this.description = description;
         this.studentName = studentName;
-        this.PhoneNumber = PhoneNumber;
-        this.StatusDescription = StatusDescription;
+        this.phoneNumber = phoneNumber;
+        this.statusDescription = statusDescription;
     }
 
     public String getStudentName() {
@@ -47,87 +39,57 @@ class Report {
     }
 
     public int getPhoneNumber() {
-        return PhoneNumber;
+        return phoneNumber;
     }
 
-    public void setPhoneNumber(int PhoneNumber) {
-        this.PhoneNumber = PhoneNumber;
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getStatusDescription() {
-        return StatusDescription;
+        return statusDescription;
     }
 
-    public void setStatusDescription(String StatusDescription) {
-        this.StatusDescription = StatusDescription;
+    public void setStatusDescription(String statusDescription) {
+        this.statusDescription = statusDescription;
     }
 
-    /**
-     * @return the reportNumber
-     */
     public int getReportNumber() {
         return reportNumber;
     }
 
-    /**
-     * @param reportNumber the reportNumber to set
-     */
     public void setReportNumber(int reportNumber) {
         this.reportNumber = reportNumber;
     }
 
-    /**
-     * @return the location
-     */
     public String getLocation() {
         return location;
     }
 
-    /**
-     * @param location the location to set
-     */
     public void setLocation(String location) {
         this.location = location;
     }
 
-    /**
-     * @return the description
-     */
     public String getDescription() {
         return description;
     }
 
-    /**
-     * @param description the description to set
-     */
     public void setDescription(String description) {
         this.description = description;
     }
 
-    /**
-     * @return the reportStatus
-     */
     public String getReportStatus() {
         return reportStatus;
     }
 
-    /**
-     * @param reportStatus the reportStatus to set
-     */
     public void setReportStatus(String reportStatus) {
         this.reportStatus = reportStatus;
     }
 
-    /**
-     * @return the reports
-     */
     public static ArrayList<Report> getReports() {
         return reports;
     }
 
-    /**
-     * @param report the report to add
-     */
     public static void addReport(Report report) {
         reports.add(report);
     }
@@ -135,33 +97,33 @@ class Report {
     public static void AddReport() {
         Scanner input = new Scanner(System.in);
 
-        System.out.print("studentName: ");
+        System.out.print("Student Name: ");
         String studentName = input.next();
 
-        System.out.print("Phone number: ");
-        int PhoneNumber = input.nextInt();
+        System.out.print("Phone Number: ");
+        int phoneNumber = input.nextInt();
 
         System.out.print("Location: ");
-        String Location = input.next();
+        String location = input.next();
 
         System.out.print("Status Description: ");
-        String StatusDescription = input.next();
+        String statusDescription = input.next();
 
-        Report Info = new Report(FCITEC.IDCounter, "124F", "PANIC ATTACK", "new");
-        reports.add(Info);
+        Report info = new Report(IDCounter, location, "PANIC ATTACK", "new");
+        reports.add(info);
 
-        FCITEC.IDCounter++; // Increment IDCounter
+        IDCounter++; // Increment IDCounter
 
         System.out.println("\nReport has been added.");
     }
 
-    public static void displayReports(int UserID) {
+    public static void displayReports(int userID) {
         System.out.println("------------------------- Report Details -------------------------");
 
-        String userIDString = String.valueOf(UserID);
+        String userIDString = String.valueOf(userID);
 
         if (userIDString.charAt(0) == '0') {
-            // Print all reports if the first character of the userIDString is '0' means ADMIN
+            // Print all reports if the first character of the userIDString is '0' (ADMIN)
             for (Report report : Report.getReports()) {
                 System.out.println("Report Number: " + report.getReportNumber()
                         + "\nLocation: " + report.getLocation()
@@ -170,9 +132,9 @@ class Report {
                 System.out.println("\n----------------------------------------------------------------\n");
             }
         } else {
-            // Print only the reports corresponding to the provided UserID
+            // Print only the reports corresponding to the provided userID (Student)
             for (Report report : Report.getReports()) {
-                if (report.getUserID() == UserID) {
+                if (report.getReportNumber() == userID) {
                     System.out.println("Report Number: " + report.getReportNumber()
                             + "\nLocation: " + report.getLocation()
                             + "\nDescription: " + report.getDescription()
@@ -182,4 +144,22 @@ class Report {
             }
         }
     }
+
+    public static void deleteReport(ArrayList<Report> reports, int reportNumber) {
+        boolean found = false;
+
+        for (Report report : reports) {
+            if (report.getReportNumber() == reportNumber) {
+                reports.remove(report);
+                System.out.println("Report with ID " + reportNumber + " has been deleted.");
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Report with ID " + reportNumber + " not found.");
+        }
+    }
+    
 }
