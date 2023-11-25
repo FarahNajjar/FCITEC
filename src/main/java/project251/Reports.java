@@ -4,6 +4,8 @@
 
 package project251;
 
+import static project251.Admin.searchByReportNumber;
+
 /**
  *
  * @author ASUS
@@ -107,5 +109,33 @@ public class Reports {
     //add Report methode 
     public void addReport() {
         // Implementation to add a new report to the database
+    }
+    
+         // Method to change the status of a report based on user input
+    public static void changeStatus(Reports[] reports, int reportNumber, int buttonChoice) {
+        // Step 1: Search for the report by report number
+        Reports reportToChange = searchByReportNumber(reports, reportNumber);
+
+        // Step 2: Check if the report was found
+        if (reportToChange != null) {
+            // Step 3: Display current status
+            System.out.println("Current Status: " + reportToChange.getReportStatus());
+
+            // Step 4: Update the status based on the user's button choice
+            switch (buttonChoice) {
+                case 1:
+                    reportToChange.setReportStatus("processing");
+                    System.out.println("Status updated to 'processing' successfully.");
+                    break;
+                case 2:
+                    reportToChange.setReportStatus("solved");
+                    System.out.println("Status updated to 'solved' successfully.");
+                    break;
+                default:
+                    System.out.println("Invalid button choice. Status not updated.");
+            }
+        } else {
+            System.out.println("Report not found.");
+        }
     }
 }
