@@ -149,9 +149,4 @@ class Report {
         System.out.println("\nReport has been added.");
        
     }
-
-//    static void AddReport() {
-//        Report Info = new Report(213, "124F", "PANIC ATTACK", " new ");
-//        reports.add(Info);
-//    }
 }

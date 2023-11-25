@@ -46,20 +46,6 @@ public class FCITEC {
             System.out.println("Would you like to make another operation?");
             System.out.println("1: File a new report \n2: view reports \n3: delete a report \n4: change a report's status(Admin Only) \n5: exit");
         }
-
-//        //test
-//        String inputString = "...";
-//        for (int i = 0; i < inputString.length(); i++) {
-//            char ch = inputString.charAt(i);
-//            System.out.print(ch);
-//
-//            // Add a delay to simulate word-by-word printing
-//            try {
-//                Thread.sleep(500); // Adjust the delay time as needed
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
     }
 
     // move to 'admin' class
