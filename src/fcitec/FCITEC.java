@@ -10,8 +10,9 @@ import java.util.Scanner;
  */
 public class FCITEC {
 
-    public static Scanner in = new Scanner(System.in);
+    static Scanner in = new Scanner(System.in);
     static FileWriter myWriter = null;
+    static User userInfo;
 
     public static void main(String[] args) {
 
@@ -25,10 +26,11 @@ public class FCITEC {
         while (choice != 5) {
 
             // read user choice
+            Scanner in = new Scanner(System.in);
             choice = in.nextInt();
             switch (choice) {
                 case 1:
-                    Report.AddReport();
+                    //   Report.ReportInfo(user);
                     break;
                 case 2:
                     System.out.println("please enter your ID: ");
@@ -36,7 +38,7 @@ public class FCITEC {
                     Report.displayReports(ID);
                     break;
                 case 3:
-                    Student.DeleteReport();
+                    //  Student.DeleteReport();
                     break;
                 case 4: // change status
 
@@ -50,17 +52,6 @@ public class FCITEC {
             System.out.println("Would you like to make another operation?");
             System.out.println("1: File a new report \n2: view reports \n3: delete a report \n4: change a report's status(Admin Only) \n5: exit");
         }
-    }
-
-    // move to 'admin' class
-    public static Report searchByReportID(ArrayList<Report> ReportL, int ID) {
-        Report report = null;
-        for (Report R : ReportL) {
-            if (R.getReportNumber() == ID) {
-                report = R;
-            }
-        }
-        return report;
     }
 
 }
