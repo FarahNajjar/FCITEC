@@ -49,14 +49,5 @@ public class FCITEC {
         }
     }
 
-    // move to 'admin' class
-    public static Report searchByReportID(ArrayList<Report> ReportL, int ID) {
-        Report report = null;
-        for (Report R : ReportL) {
-            if (R.getReportNumber() == ID) {
-                report = R;
-            }
-        }
-        return report;
-    }
+  
 }
