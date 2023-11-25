@@ -146,7 +146,7 @@ class Report {
                 }
             }
         }
-
+    }
 
     // Method to delete a report from the array list 
     public static void deleteReport(ArrayList<Report> reoprt,int reportNumber) {
