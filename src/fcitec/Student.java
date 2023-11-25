@@ -13,7 +13,5 @@ public class Student extends User {
    
     }
     
-    public static void DeleteReport() {
-
-    }
+ 
 }

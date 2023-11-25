@@ -7,6 +7,7 @@ class Report {
 
     private static ArrayList<Report> reports = new ArrayList<>();
     private static int IDCounter = 1;
+    
 
     private int reportNumber;
     private String location;
@@ -188,8 +189,10 @@ class Report {
         } else {
             System.out.println("Report not found.");
         }
-    }
     
+    }
+
+
      public static Report searchByReportID(ArrayList<Report> ReportL, int ID) {
         Report report = null;
         for (Report R : ReportL) {
@@ -199,6 +202,8 @@ class Report {
         }
         return report;
     }
+     
+        
 }
          
     
