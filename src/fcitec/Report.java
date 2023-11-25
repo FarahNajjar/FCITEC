@@ -167,15 +167,15 @@ class Report {
     
 
 
-    // Method to delete a report from the array list 
-    public static void deleteReport(ArrayList<Report> reoprt,int reportNumber) {
-        for (Report R : reports) {
-            if (R.getReportNumber() == reportNumber) {
-                reoprt.remove(R);
-                System.out.println("Report with ID " + reportNumber + " has been deleted.");
-            }else {
-        System.out.println("Report with ID " + reportNumber  + " not found.");
-            } 
-        }
-    }
+//    // Method to delete a report from the array list 
+//    public static void deleteReport(ArrayList<Report> reoprt,int reportNumber) {
+//        for (Report R : reports) {
+//            if (R.getReportNumber() == reportNumber) {
+//                reoprt.remove(R);
+//                System.out.println("Report with ID " + reportNumber + " has been deleted.");
+//            }else {
+//        System.out.println("Report with ID " + reportNumber  + " not found.");
+//            } 
+//        }
+//    }
 }
