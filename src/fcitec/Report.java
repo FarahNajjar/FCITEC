@@ -148,25 +148,6 @@ class Report {
         }
 
 
-   public static void deleteReport(ArrayList<Report> reports, int reportNumber) {
-        boolean found = false;
-
-        for (Report report : reports) {
-            if (report.getReportNumber() == reportNumber) {
-                reports.remove(report);
-                System.out.println("Report with ID " + reportNumber + " has been deleted.");
-                found = true;
-                break;
-            }
-        }
-
-        if (!found) {
-            System.out.println("Report with ID " + reportNumber + " not found.");
-        }
-    }
-    
-
-
     // Method to delete a report from the array list 
     public static void deleteReport(ArrayList<Report> reoprt,int reportNumber) {
         for (Report R : reports) {
@@ -178,7 +159,45 @@ class Report {
             } 
         }
     
+    
 
+    }
+              // Method to change the status of a report based on ADMIN input
+    public static void changeStatus(ArrayList<Report> ReportL, int reportNumber, int buttonChoice) {
+        // Step 1: Search for the report by report number
+        Report reportToChange = searchByReportID(reports, reportNumber);
+
+        // Step 2: Check if the report was found
+        if (reportToChange != null) {
+            // Step 3: Display current status
+            System.out.println("Current Status: " + reportToChange.getReportStatus());
+
+            // Step 4: Update the status based on the ADMIN's button choice
+            switch (buttonChoice) {
+                case 1:
+                    reportToChange.setReportStatus("processing");
+                    System.out.println("Status updated to 'processing' successfully.");
+                    break;
+                case 2:
+                    reportToChange.setReportStatus("solved");
+                    System.out.println("Status updated to 'solved' successfully.");
+                    break;
+                default:
+                    System.out.println("Invalid button choice. Status not updated.");
+            }
+        } else {
+            System.out.println("Report not found.");
+        }
+    }
+    
+     public static Report searchByReportID(ArrayList<Report> ReportL, int ID) {
+        Report report = null;
+        for (Report R : ReportL) {
+            if (R.getReportNumber() == ID) {
+                report = R;
+            }
+        }
+        return report;
     }
 }
          
