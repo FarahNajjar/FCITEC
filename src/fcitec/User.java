@@ -17,10 +17,10 @@ public class User {
 
     private String name;
     private String phoneNumber;
-    private int id;
+    private String id;
 
     // Constructor
-    public User(String name, String phoneNumber, int id) {
+    public User(String name, String phoneNumber, String id) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.id = id;
@@ -35,7 +35,7 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -48,11 +48,11 @@ public class User {
         return phoneNumber;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    static void WriteInfo(User userInfo, String UserWriter) {
+    static void AddInfo(User userInfo, String UserWriter) {
         try {
 
             FCITEC.myWriter = new FileWriter(UserWriter);
@@ -60,7 +60,7 @@ public class User {
                               +"\nPhone Number: " + userInfo.getPhoneNumber()
                               +"\nID: " + userInfo.getId());
             FCITEC.myWriter.close();
-            System.out.println("\nSuccessfully wrote to the file.");
+            System.out.println("\nNew user added successfully.");
 
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -73,15 +73,14 @@ public class User {
         System.out.print("Enter your Phone Number: ");
         String PhoneNum = FCITEC.in.next();
         System.out.print("Enter your ID: ");
-        int ID = FCITEC.in.nextInt();
+        String ID = FCITEC.in.next();
         
-        String str = String.format("%d", ID);
-        if (str.charAt(0) == '0') {
+        if (ID.charAt(0) == '0') {
             Admin admin = new Admin(UserName, PhoneNum, ID);
-            Admin.WriteInfo(admin, "Admin.txt");
+            Admin.AddInfo(admin, "Admin.txt");
         } else {
             Student student = new Student(UserName, PhoneNum, ID);
-            Student.WriteInfo(student, "Student.txt");
+            Student.AddInfo(student, "Student.txt");
         }
     }
 }

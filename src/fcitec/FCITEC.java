@@ -1,4 +1,5 @@
 package fcitec;
+
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -8,7 +9,8 @@ import java.util.Scanner;
  * @author FARAH
  */
 public class FCITEC {
-       public static  Scanner in = new Scanner(System.in);
+
+    public static Scanner in = new Scanner(System.in);
     static FileWriter myWriter = null;
 
     public static void main(String[] args) {
@@ -37,8 +39,7 @@ public class FCITEC {
                     Student.DeleteReport();
                     break;
                 case 4: // change status
-                    
-                    
+
                     break;
                 case 5:
                     System.out.println("Thank you for using the system, have a good day!");
@@ -61,21 +62,5 @@ public class FCITEC {
         }
         return report;
     }
-      public static void USER(Scanner input, ArrayList AddCustomer){
-        System.out.print("Enter your First name: ");
-        String CustomerFirstName = input.next();
-        System.out.print("Enter your last name: ");
-        String CustomerLastName = input.next();
-        System.out.print("Enter your PhoneNumber: ");
-        String CustomerPhoneNumber = input.next();
-        System.out.print("Enter your Email: ");
-        String CustomerEmail = input.next();
-        System.out.print("Enter your location: ");
-        String CustomerLocation = input.next();
-        Customer customer = new Customer(CustomerFirstName, CustomerLastName, CustomerPhoneNumber, CustomerEmail, CustomerLocation);
-        customer.AddCustomer(AddCustomer, customer);
-        System.out.println(customer.showMenu(AddStore));
-        placeOrder(input,customer);
-        System.out.println();
-    }
+
 }

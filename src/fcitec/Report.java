@@ -164,7 +164,6 @@ class Report {
             System.out.println("Report with ID " + reportNumber + " not found.");
         }
     }
-    
 
 
     // Method to delete a report from the array list 
