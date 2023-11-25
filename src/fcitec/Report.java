@@ -89,7 +89,7 @@ class Report {
         System.out.println("\nReport has been added.");
     }
 
-   private static void AddReport(Report report) {
+    private static void AddReport(Report report) {
         try {
             FCITEC.myWriter = new FileWriter("Reports.txt");
 
@@ -139,4 +139,15 @@ class Report {
                 + "\nReport Status: " + loopReport.getStatus());
         System.out.println("\n----------------------------------------------------------------\n");
     }
+
+    public static Report searchByReportID(ArrayList<Report> ReportL, int ID) {
+        Report report = null;
+        for (Report R : ReportL) {
+            if (R.getReportNumber() == ID) {
+                report = R;
+            }
+        }
+        return report;
+    }
+
 }

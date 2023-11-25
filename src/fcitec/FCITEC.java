@@ -1,7 +1,6 @@
 package fcitec;
 
 import java.io.FileWriter;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -13,6 +12,7 @@ public class FCITEC {
     static Scanner in = new Scanner(System.in);
     static FileWriter myWriter = null;
     static User userInfo;
+
 
     public static void main(String[] args) {
 
@@ -53,5 +53,4 @@ public class FCITEC {
             System.out.println("1: File a new report \n2: view reports \n3: delete a report \n4: change a report's status(Admin Only) \n5: exit");
         }
     }
-
 }
