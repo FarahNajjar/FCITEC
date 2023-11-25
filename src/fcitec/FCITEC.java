@@ -1,5 +1,4 @@
 package fcitec;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -25,10 +24,12 @@ public class FCITEC {
             choice = in.nextInt();
             switch (choice) {
                 case 1:
-                    Report.AddReport("");
+                    Report.AddReport();
                     break;
                 case 2:
-                    User.displayReports();
+                    System.out.println("please enter your ID: ");
+                    int ID = in.nextInt();
+                    Report.displayReports(ID);
                     break;
                 case 3:
                     Student.DeleteReport();

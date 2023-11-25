@@ -48,35 +48,5 @@ public class User {
     public int getId() {
         return id;
     }
-
-    public static void displayReports() {
-        System.out.println("------------------------- Report Details -------------------------");
-        boolean isAdmin = false;
-
-        // Check if the requester is an admin
-//        if (requesterID.equals("ADMIN")) {
-//            isAdmin = true;
-//        }
-
-     //   if (isAdmin) {
-            // Display all reports if the requester is an admin
-            for (Report report : Report.getReports()) {
-             //   System.out.println(report.toString());
-                System.out.println("Report Number: " + report.getReportNumber() +
-                        "\nLocation: " + report.getLocation() +
-                        "\nDescription: " + report.getDescription() +
-                        "\nReport Status: " + report.getReportStatus());
-                System.out.println("\n----------------------------------------------------------------\n");
-            }
-      //  } 
-//        else {
-//            // Display only the report of the student with the provided ID
-////            for (Report report : Report.getReports()) {
-////                if (report.getStudentID().equalsIgnoreCase(requesterID)) {
-////                    System.out.println(report.toString());
-////                    break; // Assuming there's only one report per student, exit the loop after finding the matching report
-////                }
-////            }
-//        }
-    }
 }
+
