@@ -5,22 +5,23 @@
  */
 package fcitec;
 
+import static fcitec.FCITEC.userInfo;
 import java.io.FileWriter;
 import java.io.IOException;
 /**
  *
  * @author Dell
  */
-import java.util.ArrayList;
+
 
 public class User {
 
     private String name;
     private String phoneNumber;
-    private String id;
+    private int id;
 
     // Constructor
-    public User(String name, String phoneNumber, String id) {
+    public User(String name, String phoneNumber, int id) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.id = id;
@@ -35,7 +36,7 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -48,17 +49,17 @@ public class User {
         return phoneNumber;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
-
-    static void AddInfo(User userInfo, String UserWriter) {
+    
+  static void AddUser(User userData, String UserWriter) {
         try {
-
+            userInfo=userData;
             FCITEC.myWriter = new FileWriter(UserWriter);
             FCITEC.myWriter.write("name: " + userInfo.getName()
-                              +"\nPhone Number: " + userInfo.getPhoneNumber()
-                              +"\nID: " + userInfo.getId());
+                    + "\nPhone Number: " + userInfo.getPhoneNumber()
+                    + "\nID: " + userInfo.getId());
             FCITEC.myWriter.close();
             System.out.println("\nNew user added successfully.");
 
@@ -66,21 +67,22 @@ public class User {
             e1.printStackTrace();
         }
     }
-
-    static void UserInfo() {
+  
+    static void UserInfo(String choose1) {
         System.out.print("Enter your name: ");
-        String UserName = FCITEC.in.nextLine();
+        String UserName =  FCITEC.in.nextLine();
         System.out.print("Enter your Phone Number: ");
         String PhoneNum = FCITEC.in.next();
         System.out.print("Enter your ID: ");
-        String ID = FCITEC.in.next();
-        
-        if (ID.charAt(0) == '0') {
+        int ID = FCITEC.in.nextInt();
+
+           //check id
+           if ("A".equals(choose1)) {
             Admin admin = new Admin(UserName, PhoneNum, ID);
-            Admin.AddInfo(admin, "Admin.txt");
+          AddUser(admin, "Admin.txt");
         } else {
             Student student = new Student(UserName, PhoneNum, ID);
-            Student.AddInfo(student, "Student.txt");
+          AddUser(student, "Student.txt");
         }
     }
 }
