@@ -1,8 +1,8 @@
 package fcitec;
 
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 /**
  *
@@ -10,73 +10,47 @@ import java.util.regex.Pattern;
  */
 public class FCITEC {
 
+    public static Scanner in = new Scanner(System.in);
+    static FileWriter myWriter = null;
+
+    static ArrayList<Report> reports = new ArrayList<>();
+
     public static void main(String[] args) {
 
-        int choice = 0;
-        int ID = 0;
-        Scanner in = new Scanner(System.in);
+        String choice = null;
 
-        System.out.println("please enter your ID: ");
-        ID = in.nextInt();
-        String userIDString = Integer.toString(ID);
-//        String regex = "^0[0-9]*$";
+        System.out.print("please enter your ID: ");
+        int ID = in.nextInt();
 
-        System.out.println(userIDString.charAt(0));
-        if (userIDString.startsWith("0")) {
-            System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-FCIT Emergency Center(Admin)=-=-=-=-=-=-=-=-=-=-=-=-=-");
-            System.out.println("What would you like to do?");
-            System.out.println("1: change a report's status(Admin Only)\n");
-        } else {
-            System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-FCIT Emergency Center(Admin)=-=-=-=-=-=-=-=-=-=-=-=-=-");
-            System.out.println("What would you like to do?");
-        System.out.println("1: delete a report");
+        start(ID);
+        choice = in.next();
 
-            System.out.println("add a report");
-        }
-        System.out.println("2: view reports");
-        System.out.println("3: exit");
+        do {
+            
         
-        // header
-//        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-FCIT Emergency Center=-=-=-=-=-=-=-=-=-=-=-=-=-");
-//        System.out.println("What would you like to do?");
-//        System.out.println("1: File a new report \n2: view reports \n3: delete a report \n4: change a report's status(Admin Only) \n5: exit");
-
-        while (choice != 5) {
-
-            choice = in.nextInt();
             switch (choice) {
-                case 1:
+                case "A":
                     Report.AddReport();
                     break;
-                case 2:
-                    //
+                case "V":
+
                     Report.displayReports(ID);
                     break;
-                case 3:
-
-                    Student.DeleteReport();
+                case "D":
+                    System.out.print("Please enter the report number: ");
+                    int reportNum = in.nextInt();
+                    Report.deleteReport(reports, reportNum);
                     break;
-                case 4:
-
-                    //String userIDString = String.valueOf(ID);
-                    if (userIDString.charAt(0) == '0') {
-                        System.out.println("Welcome admin" + ID);
-                        // change status
-                    } else {
-
-                        System.out.println("unauthorized Access, admins only.");
-                    }
+                case "S": // change status
 
                     break;
-                case 5:
+                case "E":
                     System.out.println("Thank you for using the system, have a good day!");
                     System.exit(0);
             }
-
-            System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-FCIT Emergency Center=-=-=-=-=-=-=-=-=-=-=-=-=-");
-            System.out.println("Would you like to make another operation?");
-            System.out.println("1: File a new report \n2: view reports \n3: delete a report \n4: change a report's status(Admin Only) \n5: exit");
-        }
+            start(ID);
+            choice = in.next();
+    } while (true);
     }
 
     // move to 'admin' class
@@ -88,5 +62,48 @@ public class FCITEC {
             }
         }
         return report;
+    }
+
+//    public static void USER(Scanner input, ArrayList AddCustomer) {
+//        System.out.print("Enter your First name: ");
+//        String CustomerFirstName = input.next();
+//        System.out.print("Enter your last name: ");
+//        String CustomerLastName = input.next();
+//        System.out.print("Enter your PhoneNumber: ");
+//        String CustomerPhoneNumber = input.next();
+//        System.out.print("Enter your Email: ");
+//        String CustomerEmail = input.next();
+//        System.out.print("Enter your location: ");
+//        String CustomerLocation = input.next();
+//        Customer customer = new Customer(CustomerFirstName, CustomerLastName, CustomerPhoneNumber, CustomerEmail, CustomerLocation);
+//        customer.AddCustomer(AddCustomer, customer);
+//        System.out.println(customer.showMenu(AddStore));
+//        placeOrder(input, customer);
+//        System.out.println();
+//    }
+    public static boolean isAdmin(int ID) {
+
+        String IDString = String.valueOf(ID);
+
+        if (IDString.startsWith("9")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static void start(int ID) {
+        isAdmin(ID);
+        if (isAdmin(ID) == true) {
+            System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-FCIT Emergency Center(Admin)=-=-=-=-=-=-=-=-=-=-=-=-=-");
+            System.out.println("What would you like to do?");
+            System.out.println("V: view reports \nS: change a report's status \nE: exit");
+
+            //if student:
+        } else if (isAdmin(ID) == false) {
+            System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-FCIT Emergency Center(Student)=-=-=-=-=-=-=-=-=-=-=-=-=-");
+            System.out.println("What would you like to do?");
+            System.out.println("A: Add a new report \nV: view reports \nD: delete a report \nE: exit");
+        }
     }
 }

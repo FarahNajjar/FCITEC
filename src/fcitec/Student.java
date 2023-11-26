@@ -12,8 +12,4 @@ public class Student extends User {
         super(StudentName, PhoneNum, ID);
    
     }
-    
-    public static void DeleteReport() {
-
-    }
 }
