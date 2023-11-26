@@ -1,5 +1,6 @@
 package fcitec;
-import java.util.ArrayList;
+
+import java.io.FileWriter;
 import java.util.Scanner;
 
 /**
@@ -7,6 +8,11 @@ import java.util.Scanner;
  * @author FARAH
  */
 public class FCITEC {
+
+    static Scanner in = new Scanner(System.in);
+    static FileWriter myWriter = null;
+    static User userInfo;
+
 
     public static void main(String[] args) {
 
@@ -24,7 +30,7 @@ public class FCITEC {
             choice = in.nextInt();
             switch (choice) {
                 case 1:
-                    Report.AddReport();
+                    //   Report.ReportInfo(user);
                     break;
                 case 2:
                     System.out.println("please enter your ID: ");
@@ -32,11 +38,12 @@ public class FCITEC {
                     Report.displayReports(ID);
                     break;
                 case 3:
-                    Student.DeleteReport();
+                    System.out.println("please enter  report ID to delet : ");
+                    int id = in.nextInt();
+                    Report.deleteReport(id);
                     break;
                 case 4: // change status
-                    
-                    
+
                     break;
                 case 5:
                     System.out.println("Thank you for using the system, have a good day!");
@@ -47,16 +54,5 @@ public class FCITEC {
             System.out.println("Would you like to make another operation?");
             System.out.println("1: File a new report \n2: view reports \n3: delete a report \n4: change a report's status(Admin Only) \n5: exit");
         }
-    }
-
-    // move to 'admin' class
-    public static Report searchByReportID(ArrayList<Report> ReportL, int ID) {
-        Report report = null;
-        for (Report R : ReportL) {
-            if (R.getReportNumber() == ID) {
-                report = R;
-            }
-        }
-        return report;
     }
 }
