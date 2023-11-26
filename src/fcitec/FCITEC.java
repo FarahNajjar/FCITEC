@@ -1,5 +1,4 @@
 package fcitec;
-
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -26,11 +25,9 @@ public class FCITEC {
         choice = in.next();
 
         do {
-            
-        
             switch (choice) {
                 case "A":
-                    Report.AddReport();
+                    Report.ReportInfo();
                     break;
                 case "V":
 
@@ -50,37 +47,9 @@ public class FCITEC {
             }
             start(ID);
             choice = in.next();
-    } while (true);
+        } while (true);
     }
 
-    // move to 'admin' class
-    public static Report searchByReportID(ArrayList<Report> ReportL, int ID) {
-        Report report = null;
-        for (Report R : ReportL) {
-            if (R.getReportNumber() == ID) {
-                report = R;
-            }
-        }
-        return report;
-    }
-
-//    public static void USER(Scanner input, ArrayList AddCustomer) {
-//        System.out.print("Enter your First name: ");
-//        String CustomerFirstName = input.next();
-//        System.out.print("Enter your last name: ");
-//        String CustomerLastName = input.next();
-//        System.out.print("Enter your PhoneNumber: ");
-//        String CustomerPhoneNumber = input.next();
-//        System.out.print("Enter your Email: ");
-//        String CustomerEmail = input.next();
-//        System.out.print("Enter your location: ");
-//        String CustomerLocation = input.next();
-//        Customer customer = new Customer(CustomerFirstName, CustomerLastName, CustomerPhoneNumber, CustomerEmail, CustomerLocation);
-//        customer.AddCustomer(AddCustomer, customer);
-//        System.out.println(customer.showMenu(AddStore));
-//        placeOrder(input, customer);
-//        System.out.println();
-//    }
     public static boolean isAdmin(int ID) {
 
         String IDString = String.valueOf(ID);
