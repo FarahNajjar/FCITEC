@@ -39,6 +39,7 @@ public class FCITEC {
                     break;
                 case 3:
 
+
                     System.out.println("please enter  report ID to delet : ");
                     int id = in.nextInt();
                     Report.deleteReport(id);
@@ -57,3 +58,21 @@ public class FCITEC {
         }
     }
 }
+
+                    //  Student.DeleteReport();
+                    break;
+                case 4: // change status
+
+                    break;
+                case 5:
+                    System.out.println("Thank you for using the system, have a good day!");
+                    System.exit(0);
+            }
+
+            System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-FCIT Emergency Center=-=-=-=-=-=-=-=-=-=-=-=-=-");
+            System.out.println("Would you like to make another operation?");
+            System.out.println("1: File a new report \n2: view reports \n3: delete a report \n4: change a report's status(Admin Only) \n5: exit");
+        }
+    }
+}
+
