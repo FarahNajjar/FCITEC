@@ -212,38 +212,35 @@ class Report {
             default:
                 System.out.println("Invalid choice. No changes made to the report status.");
         }
-        updateFile(reports); // Update the file after changing the report status
+        updateFileStatus(reports); // Update the file after changing the report status
     } else {//if the report was not found
         System.out.println("Report not found.");
     }
 }
 
-private static void updateFile(ArrayList<Report> reports) {
+private static void updateFileStatus(ArrayList<Report> reports) {
     try {
         FileWriter myWriter = new FileWriter("Reports.txt");
 
-        // Iterate through the list of reports and update the file
+        // Iterate through the list of reports and update only the status in the file
         for (Report report : reports) {
-            String UserInfo = "Name: " + report.getUser().getName()
-                    + "\nPhone Number: " + report.getUser().getPhoneNumber()
-                    + "\nID: " + report.getUser().getId()
-                    + "\nReport Number: " + report.getReportNumber()
-                    + "\nLocation: " + report.getLocation()
-                    + "\nDescription: " + report.getDescription()
-                    + "\nReport Status: " + report.getStatus();
+            String updatedStatusInfo = "Report Number: " + report.getReportNumber()
+                    + "\nReport Status to: " + report.getStatus();
 
-            myWriter.write(UserInfo);
+            myWriter.write(updatedStatusInfo);
             myWriter.write("\n----------------------------------------------------------------\n");
-            System.out.println(UserInfo);
         }
+        //Report Number: 111 - Status updated to: Processing
+        //Report Number: 222 - Status updated to: Resolved
 
         myWriter.close();
-        System.out.println("\nReport file updated successfully.");
+        System.out.println("\nReport status updated successfully.");
 
     } catch (IOException e) {
         e.printStackTrace();
     }
 }
+
 
 }
     
