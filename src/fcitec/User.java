@@ -68,7 +68,7 @@ public class User {
         }
     }
   
-    static void UserInfo(String choose1) {
+    static void UserInfo() {
         System.out.print("Enter your name: ");
         String UserName =  FCITEC.in.nextLine();
         System.out.print("Enter your Phone Number: ");
@@ -77,7 +77,7 @@ public class User {
         int ID = FCITEC.in.nextInt();
 
            //check id
-           if ("A".equals(choose1)) {
+           if () {
             Admin admin = new Admin(UserName, PhoneNum, ID);
           AddUser(admin, "Admin.txt");
         } else {
