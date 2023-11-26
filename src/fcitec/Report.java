@@ -181,5 +181,69 @@ class Report {
             e.printStackTrace();
         }
     }
+    
+    //chang status by admin
+    public static void changeStatus(ArrayList<Report> reports) {
+    Scanner input = new Scanner(System.in);
+
+    System.out.print("Enter the report number to change status: ");
+    int reportNumberToChange = input.nextInt();
+
+    // Search for the report based on the user input report number
+    Report reportToChangeStatus = searchByReportID(reports, reportNumberToChange);
+    //if the report was found
+    if (reportToChangeStatus != null) {
+        
+        System.out.println("Choose a new status for the report:");
+        System.out.println("1. Processing");
+        System.out.println("2. Resolved");
+
+        int choice = input.nextInt();
+
+        switch (choice) {
+            case 1:
+                reportToChangeStatus.setStatus("Processing");
+                System.out.println("Report status updated to Processing.");
+                break;
+            case 2:
+                reportToChangeStatus.setStatus("Resolved");
+                System.out.println("Report status updated to Resolved.");
+                break;
+            default:
+                System.out.println("Invalid choice. No changes made to the report status.");
+        }
+        updateFile(reports); // Update the file after changing the report status
+    } else {//if the report was not found
+        System.out.println("Report not found.");
+    }
+}
+
+private static void updateFile(ArrayList<Report> reports) {
+    try {
+        FileWriter myWriter = new FileWriter("Reports.txt");
+
+        // Iterate through the list of reports and update the file
+        for (Report report : reports) {
+            String UserInfo = "Name: " + report.getUser().getName()
+                    + "\nPhone Number: " + report.getUser().getPhoneNumber()
+                    + "\nID: " + report.getUser().getId()
+                    + "\nReport Number: " + report.getReportNumber()
+                    + "\nLocation: " + report.getLocation()
+                    + "\nDescription: " + report.getDescription()
+                    + "\nReport Status: " + report.getStatus();
+
+            myWriter.write(UserInfo);
+            myWriter.write("\n----------------------------------------------------------------\n");
+            System.out.println(UserInfo);
+        }
+
+        myWriter.close();
+        System.out.println("\nReport file updated successfully.");
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
 }
     
