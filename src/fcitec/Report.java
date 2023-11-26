@@ -1,6 +1,10 @@
 package fcitec;
 
+
  import java.io.FileWriter;
+
+import java.io.FileWriter;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -150,6 +154,7 @@ class Report {
             }
         }
         return report;
+
     }
 
      ///delete 
@@ -163,7 +168,6 @@ class Report {
             System.out.println("Report not found.");
         }
     }
-
     private static void updateFile() {
         try {
             FileWriter myWriter = new FileWriter("Reports.txt");
@@ -178,6 +182,4 @@ class Report {
     }
 }
     
-    
-
     

@@ -3,15 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package fcitec;
 
+import static fcitec.FCITEC.userInfo;
+import java.io.FileWriter;
+import java.io.IOException;
 /**
  *
  * @author Dell
- */import java.util.ArrayList;
+ */
+
 
 public class User {
+
     private String name;
     private String phoneNumber;
     private int id;
@@ -48,5 +52,37 @@ public class User {
     public int getId() {
         return id;
     }
-}
+    
+  static void AddUser(User userData, String UserWriter) {
+        try {
+            userInfo=userData;
+            FCITEC.myWriter = new FileWriter(UserWriter);
+            FCITEC.myWriter.write("name: " + userInfo.getName()
+                    + "\nPhone Number: " + userInfo.getPhoneNumber()
+                    + "\nID: " + userInfo.getId());
+            FCITEC.myWriter.close();
+            System.out.println("\nNew user added successfully.");
 
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+    }
+  
+    static void UserInfo(String choose1) {
+        System.out.print("Enter your name: ");
+        String UserName =  FCITEC.in.nextLine();
+        System.out.print("Enter your Phone Number: ");
+        String PhoneNum = FCITEC.in.next();
+        System.out.print("Enter your ID: ");
+        int ID = FCITEC.in.nextInt();
+
+           //check id
+           if ("A".equals(choose1)) {
+            Admin admin = new Admin(UserName, PhoneNum, ID);
+          AddUser(admin, "Admin.txt");
+        } else {
+            Student student = new Student(UserName, PhoneNum, ID);
+          AddUser(student, "Student.txt");
+        }
+    }
+}

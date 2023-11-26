@@ -38,6 +38,7 @@ public class FCITEC {
                     Report.displayReports(ID);
                     break;
                 case 3:
+
                     System.out.println("please enter  report ID to delet : ");
                     int id = in.nextInt();
                     Report.deleteReport(id);
