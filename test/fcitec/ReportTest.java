@@ -196,8 +196,7 @@ public class ReportTest {
         System.out.println("ReportInfo");
         User user = null;
         Report.ReportInfo(user);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -208,8 +207,7 @@ public class ReportTest {
         System.out.println("displayReports");
         int userID = 0;
         Report.displayReports(userID);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -223,8 +221,7 @@ public class ReportTest {
         Report expResult = null;
         Report result = Report.searchByReportID(ReportL, ID);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -235,8 +232,7 @@ public class ReportTest {
         System.out.println("deleteReport");
         int reportNumberToDelete = 0;
         Report.deleteReport(reportNumberToDelete);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       
     }
 
     /**
@@ -247,7 +243,6 @@ public class ReportTest {
         System.out.println("changeStatus");
         ArrayList<Report> reports = null;
         Report.changeStatus(reports);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 }

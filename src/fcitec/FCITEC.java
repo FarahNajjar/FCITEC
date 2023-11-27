@@ -10,19 +10,24 @@ import java.util.Scanner;
  */
 public class FCITEC {
 
+    //create a scanner
     public static Scanner in = new Scanner(System.in);
     static FileWriter myWriter = null;
 
+    //create a user object to 
     static User userInfo;
     static ArrayList<Report> reports = new ArrayList<>();
 
     public static void main(String[] args) {
 
+        //initialize choice
         String choice = null;
 
+        // ask user to log in by phone number,name, and ID
         User.userInfo();
+        //print menu based on ID(if student or admin)
         start(userInfo.getId());
-        
+
         do {
             choice = in.next();
             switch (choice) {
@@ -30,7 +35,6 @@ public class FCITEC {
                     Report.ReportInfo(userInfo);
                     break;
                 case "V":
-
                     Report.displayReports(userInfo.getId());
                     break;
                 case "D":
@@ -38,8 +42,10 @@ public class FCITEC {
                     int reportNum = in.nextInt();
                     Report.deleteReport(reportNum);
                     break;
-                case "S": // change status
-
+                case "S": 
+                    System.out.print("Please enter the report number: ");
+                    reportNum = in.nextInt();
+                    Report.changeStatus(reports, reportNum);
                     break;
                 case "E":
                     System.out.println("Thank you for using the system, have a good day!");
@@ -47,18 +53,18 @@ public class FCITEC {
                     break;
                 case "L":
                     User.userInfo();
-                    
                     break;
             }
             start(userInfo.getId());
-           
         } while (true);
     }
 
+    //method to check if user is an admin or a student
     public static boolean isAdmin(int ID) {
 
         String IDString = String.valueOf(ID);
 
+        // if the ID starts with 9, then it's an admin
         if (IDString.startsWith("9")) {
             return true;
         } else {
