@@ -55,9 +55,7 @@ public class User {
         try {
             userInfo = userData;
             FCITEC.myWriter = new FileWriter(UserWriter);
-            FCITEC.myWriter.write("name: " + userInfo.getName()
-                    + "\nPhone Number: " + userInfo.getPhoneNumber()
-                    + "\nID: " + userInfo.getId());
+            FCITEC.myWriter.write(userInfo.toString());
             FCITEC.myWriter.close();
             System.out.println("\nNew user added successfully.");
 
@@ -73,7 +71,7 @@ public class User {
         String PhoneNum = FCITEC.in.next();
         System.out.print("Enter your ID: ");
         int ID = FCITEC.in.nextInt();
-
+        
            //check id
            if (FCITEC.isAdmin(ID)) {
             Admin admin = new Admin(UserName, PhoneNum, ID);
@@ -83,4 +81,10 @@ public class User {
           AddUser(student, "Student.txt");
         }
     }
+
+    @Override
+    public String toString() {
+        return "name: " + name + "\nPhone Number: " + phoneNumber + "\nID: " + id;
+    }
+    
 }

@@ -72,31 +72,6 @@ class Report {
         this.user = user;
     }
 
-    public static void ReportInfo(User user) {
-        Scanner input = new Scanner(System.in);
-
-        System.out.print("Location: ");
-        String location = input.next();
-        System.out.print("Description: ");
-        String description = input.next();
-
-        Report info = new Report(IDCounter, location, description, user, "new");
-        reports.add(info);
-        AddReport();
-        IDCounter++; // Increment IDCounter
-
-        System.out.println("\nReport Number: " + info.getReportNumber()
-                + "\nName: " + info.getUser().getName()
-                + "\nPhone Number: " + info.getUser().getPhoneNumber()
-                + "\nID: " + info.getUser().getId()
-                + "\nLocation: " + info.getLocation()
-                + "\nDescription: " + info.getDescription()
-                + "\nReport Status: " + info.getStatus());
-
-        System.out.println("\nReport has been added.");
-    }
-
-
     public static void displayReports(int userID) {
         System.out.println("------------------------- Report Details -------------------------");
         String userIDString = String.valueOf(userID);
@@ -104,29 +79,18 @@ class Report {
         if (userIDString.charAt(0) == '9') {        // Print all reports if the first character of the userIDString is '9' (ADMIN)
             for (int i = 0; i < reports.size(); i++) {
                 Report loopReport = reports.get(i);
-                printReportDetails(loopReport);
+                    System.out.println(loopReport.toString());
             }
         } else {
             for (int i = 0; i < reports.size(); i++) {
                 Report loopReport = reports.get(i);
                 if (loopReport.getUser().getId() == userID) {
-                    printReportDetails(loopReport);
+                    System.out.println(loopReport.toString());
                 }
             }
         }
     }
-
-    private static void printReportDetails(Report loopReport) {
-        System.out.println("name: " + loopReport.getUser().getName()
-                + "\nPhone Number: " + loopReport.getUser().getPhoneNumber() +
-                "\nID: " + loopReport.getUser().getId() + "\nReport Number: " + 
-                loopReport.getReportNumber()
-                + "\nLocation: " + loopReport.getLocation() + "\nDescription: " + 
-                loopReport.getDescription()
-                + "\nReport Status: " + loopReport.getStatus());
-        System.out.println("\n----------------------------------------------------------------\n");
-    }
-
+    
     public static Report searchByReportID(int ID) {
         for (Report report : reports) {
             if (report.getReportNumber() == ID) {
@@ -141,17 +105,16 @@ class Report {
         Report reportToDelete = searchByReportID(reportNumberToDelete);
         if (reportToDelete != null) {
             reports.remove(reportToDelete);
-           AddReport(); // Update the file after removing the report
+            AddReport(); // Update the file after removing the report
             System.out.println("Report deleted successfully.");
-        } if ("Resolved".equals(reportToDelete.getStatus())){
-           System.out.println("This report is Resolved");
-
         }
-        else {
+        if ("Resolved".equals(reportToDelete.getStatus())) {
+            System.out.println("This report is Resolved");
+
+        } else {
             System.out.println("Report not found.");
         }
     }
-    
 
     //change status by admin
     public static void changeStatus(int reportNumberToChange) {
@@ -187,28 +150,44 @@ class Report {
         }
     }
 
-      private static void AddReport() {
+    public static void ReportInfo(User user) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Location: ");
+        String location = input.next();
+        System.out.print("Description: ");
+        String description = input.next();
+
+        Report info = new Report(IDCounter, location, description, user, "new");
+        reports.add(info);
+        AddReport();
+        IDCounter++; // Increment IDCounter
+
+        System.out.println(info.toString());
+
+        System.out.println("\nReport has been added.");
+    }
+
+    private static void AddReport() {
         try {
             FCITEC.myWriter = new FileWriter("Reports.txt");
             for (int i = 0; i < reports.size(); i++) {
                 Report report = reports.get(i);
 
-                String UserInfo = "Report Number: " + report.getReportNumber()
-                        + "\nName: " + report.getUser().getName()
-                        + "\nPhone Number: " + report.getUser().getPhoneNumber()
-                        + "\nID: " + report.getUser().getId()
-                        + "\nLocation: " + report.getLocation()
-                        + "\nDescription: " + report.getDescription()
-                        + "\nReport Status: " + report.getStatus();
-
-                FCITEC.myWriter.write(UserInfo);
+                FCITEC.myWriter.write(report.toString());
                 FCITEC.myWriter.write("\n----------------------------------------------------------------\n");
             }
-
             FCITEC.myWriter.close();
-
+            
         } catch (IOException e1) {
             e1.printStackTrace();
         }
+    }
+
+    @Override
+    public String toString() {
+        return "\nReport Number: " + ReportNumber + "\nName: " + user.getName()
+                + "\nPhone Number: " + user.getPhoneNumber() + "\nID: " + user.getId()
+                + "\nLocation: " + Location + "\nDescription: " + Description + "\nReport Status: " + Status;
     }
 }

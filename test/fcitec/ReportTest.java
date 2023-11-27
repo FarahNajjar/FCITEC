@@ -234,7 +234,18 @@ public class ReportTest {
         Report.deleteReport(reportNumberToDelete);
        
     }
-
+  
+    @Test
+    public void testGetDiscount() {
+        System.out.println("getDiscount");
+        Item instance = new  Item(21522, "ajmi",2500, true);
+        double ExpResult = 1500.0;
+        double Actuallresult = instance.getDiscount(40.0);
+        assertEquals(ExpResult, Actuallresult, 0.0);
+        // TODO review the generated test code and remove the default call to fail.
+       // fail("The test case is a prototype.");
+    }
+    
     /**
      * Test of changeStatus method, of class Report.
      */
