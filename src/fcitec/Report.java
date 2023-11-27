@@ -1,20 +1,11 @@
 package fcitec;
 
-
-
- import java.io.FileWriter;
-
 import java.io.FileWriter;
-
-import java.io.FileWriter;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 class Report {
-
-  
 
     private static ArrayList<Report> reports = new ArrayList<>();
     private static int IDCounter = 1;
@@ -115,8 +106,7 @@ class Report {
             System.out.println(UserInfo);
 
             FCITEC.myWriter.close();
-            System.out.println("\nNew report added successfully.");
-
+            
         } catch (IOException e1) {
             e1.printStackTrace();
         }
@@ -143,7 +133,7 @@ class Report {
 
     private static void printReportDetails(Report loopReport) {
         System.out.println("name: " + loopReport.getUser().getName()
-                + "\nPhone Number: " + loopReport.getUser().getPhoneNumber() + "\nID: " + loopReport.getUser().getId() + "Report Number: " + loopReport.getReportNumber()
+                + "\nPhone Number: " + loopReport.getUser().getPhoneNumber() + "\nID: " + loopReport.getUser().getId() + "\nReport Number: " + loopReport.getReportNumber()
                 + "\nLocation: " + loopReport.getLocation() + "\nDescription: " + loopReport.getDescription()
                 + "\nReport Status: " + loopReport.getStatus());
         System.out.println("\n----------------------------------------------------------------\n");
@@ -158,10 +148,9 @@ class Report {
         }
         return report;
 
-
     }
 
-     ///delete 
+    ///delete 
     public static void deleteReport(int reportNumberToDelete) {
         Report reportToDelete = searchByReportID(reports, reportNumberToDelete);
         if (reportToDelete != null) {
@@ -172,17 +161,75 @@ class Report {
             System.out.println("Report not found.");
         }
     }
+
     private static void updateFile() {
         try {
             FileWriter myWriter = new FileWriter("Reports.txt");
 
-            myWriter.write(" report successfully deleted ." );
+            myWriter.write(" report successfully deleted .");
             myWriter.close();
-           
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //change status by admin
+    public static void changeStatus(ArrayList<Report> reports) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter the report number to change status: ");
+        int reportNumberToChange = input.nextInt();
+
+        // Search for the report based on the user input report number
+        Report reportToChangeStatus = searchByReportID(reports, reportNumberToChange);
+        //if the report was found
+        if (reportToChangeStatus != null) {
+
+            System.out.println("Choose a new status for the report:");
+            System.out.println("1. Processing");
+            System.out.println("2. Resolved");
+
+            int choice = input.nextInt();
+
+            switch (choice) {
+                case 1:
+                    reportToChangeStatus.setStatus("Processing");
+                    System.out.println("Report status updated to Processing.");
+                    break;
+                case 2:
+                    reportToChangeStatus.setStatus("Resolved");
+                    System.out.println("Report status updated to Resolved.");
+                    break;
+                default:
+                    System.out.println("Invalid choice. No changes made to the report status.");
+            }
+            updateFileStatus(reports); // Update the file after changing the report status
+        } else {//if the report was not found
+            System.out.println("Report not found.");
+        }
+    }
+
+    private static void updateFileStatus(ArrayList<Report> reports) {
+        try {
+            FileWriter myWriter = new FileWriter("Reports.txt");
+
+            // Iterate through the list of reports and update only the status in the file
+            for (Report report : reports) {
+                String updatedStatusInfo = "Report Number: " + report.getReportNumber()
+                        + "\nReport Status to: " + report.getStatus();
+
+                myWriter.write(updatedStatusInfo);
+                myWriter.write("\n----------------------------------------------------------------\n");
+            }
+            //Report Number: 111 - Status updated to: Processing
+            //Report Number: 222 - Status updated to: Resolved
+
+            myWriter.close();
+            System.out.println("\nReport status updated successfully.");
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 }
-    

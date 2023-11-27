@@ -5,13 +5,14 @@
  */
 package fcitec;
 
+import static fcitec.FCITEC.userInfo;
 import java.io.FileWriter;
 import java.io.IOException;
 /**
  *
  * @author Dell
  */
-import java.util.ArrayList;
+
 
 public class User {
 
@@ -51,37 +52,37 @@ public class User {
     public int getId() {
         return id;
     }
-
-    static void WriteInfo(User userInfo, String UserWriter) {
+    
+  static void AddUser(User userData, String UserWriter) {
         try {
-
+            userInfo = userData;
             FCITEC.myWriter = new FileWriter(UserWriter);
             FCITEC.myWriter.write("name: " + userInfo.getName()
-                              +"\nPhone Number: " + userInfo.getPhoneNumber()
-                              +"\nID: " + userInfo.getId());
+                    + "\nPhone Number: " + userInfo.getPhoneNumber()
+                    + "\nID: " + userInfo.getId());
             FCITEC.myWriter.close();
-            System.out.println("\nSuccessfully wrote to the file.");
+            System.out.println("\nNew user added successfully.");
 
         } catch (IOException e1) {
             e1.printStackTrace();
         }
     }
-
-    static void UserInfo() {
+  
+    static void userInfo() {
         System.out.print("Enter your name: ");
-        String UserName = FCITEC.in.nextLine();
+        String UserName =  FCITEC.in.nextLine();
         System.out.print("Enter your Phone Number: ");
         String PhoneNum = FCITEC.in.next();
         System.out.print("Enter your ID: ");
         int ID = FCITEC.in.nextInt();
-        
-        String str = String.format("%d", ID);
-        if (str.charAt(0) == '0') {
+
+           //check id
+           if (FCITEC.isAdmin(ID)) {
             Admin admin = new Admin(UserName, PhoneNum, ID);
-            Admin.WriteInfo(admin, "Admin.txt");
+          AddUser(admin, "Admin.txt");
         } else {
             Student student = new Student(UserName, PhoneNum, ID);
-            Student.WriteInfo(student, "Student.txt");
+          AddUser(student, "Student.txt");
         }
     }
 }
