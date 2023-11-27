@@ -22,7 +22,7 @@ public class FCITEC {
 
         User.userInfo();
         start(userInfo.getId());
-        
+
         do {
             choice = in.next();
             switch (choice) {
@@ -30,7 +30,6 @@ public class FCITEC {
                     Report.ReportInfo(userInfo);
                     break;
                 case "V":
-
                     Report.displayReports(userInfo.getId());
                     break;
                 case "D":
@@ -47,11 +46,11 @@ public class FCITEC {
                     break;
                 case "L":
                     User.userInfo();
-                    
+                    start(userInfo.getId());
                     break;
             }
             start(userInfo.getId());
-           
+
         } while (true);
     }
 

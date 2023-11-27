@@ -82,31 +82,40 @@ class Report {
 
         Report info = new Report(IDCounter, location, description, user, "new");
         reports.add(info);
-        AddReport(info);
-
+        AddReport();
         IDCounter++; // Increment IDCounter
+
+        System.out.println("\nReport Number: " + info.getReportNumber()
+                + "\nName: " + info.getUser().getName()
+                + "\nPhone Number: " + info.getUser().getPhoneNumber()
+                + "\nID: " + info.getUser().getId()
+                + "\nLocation: " + info.getLocation()
+                + "\nDescription: " + info.getDescription()
+                + "\nReport Status: " + info.getStatus());
 
         System.out.println("\nReport has been added.");
     }
 
-    private static void AddReport(Report report) {
+    private static void AddReport() {
         try {
             FCITEC.myWriter = new FileWriter("Reports.txt");
+            for (int i = 0; i < reports.size(); i++) {
+                Report report = reports.get(i);
 
-            String UserInfo = "Name: " + report.getUser().getName()
-                    + "\nPhone Number: " + report.getUser().getPhoneNumber()
-                    + "\nID: " + report.getUser().getId()
-                    + "\nReport Number: " + report.getReportNumber()
-                    + "\nLocation: " + report.getLocation()
-                    + "\nDescription: " + report.getDescription()
-                    + "\nReport Status: " + report.getStatus();
+                String UserInfo = "Report Number: " + report.getReportNumber()
+                        + "\nName: " + report.getUser().getName()
+                        + "\nPhone Number: " + report.getUser().getPhoneNumber()
+                        + "\nID: " + report.getUser().getId()
+                        + "\nLocation: " + report.getLocation()
+                        + "\nDescription: " + report.getDescription()
+                        + "\nReport Status: " + report.getStatus();
 
-            FCITEC.myWriter.write(UserInfo);
-            FCITEC.myWriter.write("\n----------------------------------------------------------------\n");
-            System.out.println(UserInfo);
+                FCITEC.myWriter.write(UserInfo);
+                FCITEC.myWriter.write("\n----------------------------------------------------------------\n");
+            }
 
             FCITEC.myWriter.close();
-            
+
         } catch (IOException e1) {
             e1.printStackTrace();
         }
