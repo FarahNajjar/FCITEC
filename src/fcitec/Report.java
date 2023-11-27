@@ -150,7 +150,7 @@ class Report {
 
     }
 
-    ///delete 
+    //delete report by report number 
     public static void deleteReport(int reportNumberToDelete) {
         Report reportToDelete = searchByReportID(reports, reportNumberToDelete);
         if (reportToDelete != null) {
@@ -166,7 +166,7 @@ class Report {
         try {
             FileWriter myWriter = new FileWriter("Reports.txt");
 
-            myWriter.write(" report successfully deleted .");
+            myWriter.write("                                                                ");
             myWriter.close();
 
         } catch (IOException e) {
