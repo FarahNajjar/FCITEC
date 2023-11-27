@@ -27,7 +27,7 @@ public class FCITEC {
         do {
             switch (choice) {
                 case "A":
-                    Report.ReportInfo();
+                    User.UserInfo();
                     break;
                 case "V":
 
@@ -36,7 +36,7 @@ public class FCITEC {
                 case "D":
                     System.out.print("Please enter the report number: ");
                     int reportNum = in.nextInt();
-                    Report.deleteReport(reports, reportNum);
+                    Report.deleteReport(reportNum);
                     break;
                 case "S": // change status
 

@@ -1,11 +1,20 @@
 package fcitec;
 
+
+
+ import java.io.FileWriter;
+
 import java.io.FileWriter;
+
+import java.io.FileWriter;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 class Report {
+
+  
 
     private static ArrayList<Report> reports = new ArrayList<>();
     private static int IDCounter = 1;
@@ -148,5 +157,32 @@ class Report {
             }
         }
         return report;
+
+
+    }
+
+     ///delete 
+    public static void deleteReport(int reportNumberToDelete) {
+        Report reportToDelete = searchByReportID(reports, reportNumberToDelete);
+        if (reportToDelete != null) {
+            reports.remove(reportToDelete);
+            updateFile(); // Update the file after removing the report
+            System.out.println("Report deleted successfully.");
+        } else {
+            System.out.println("Report not found.");
+        }
+    }
+    private static void updateFile() {
+        try {
+            FileWriter myWriter = new FileWriter("Reports.txt");
+
+            myWriter.write(" report successfully deleted ." );
+            myWriter.close();
+           
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
+    
