@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 name: WDSERFTG
 Phone Number: 2345
 ID: 323
+=======
+name: shams
+Phone Number: 000000
+ID: 22
+>>>>>>> origin/master

@@ -1,4 +1,11 @@
+<<<<<<< HEAD
+=======
+Name: shams
+Phone Number: 000000
+ID: 22
+>>>>>>> origin/master
 Report Number: 1
+<<<<<<< HEAD
 Name: WDSERFTG
 Phone Number: 2345
 ID: 323
@@ -12,5 +19,9 @@ Phone Number: 2345
 ID: 323
 Location: FGH
 Description: DFG
+=======
+Location: hhh
+Description: ggg
+>>>>>>> origin/master
 Report Status: new
 ----------------------------------------------------------------
