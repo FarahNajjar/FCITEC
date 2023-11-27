@@ -12,8 +12,6 @@ import java.io.IOException;
  *
  * @author Dell
  */
-
-
 public class User {
 
     private String name;
@@ -70,7 +68,7 @@ public class User {
   
     static void userInfo() {
         System.out.print("Enter your name: ");
-        String UserName =  FCITEC.in.nextLine();
+        String UserName =  FCITEC.in.next();
         System.out.print("Enter your Phone Number: ");
         String PhoneNum = FCITEC.in.next();
         System.out.print("Enter your ID: ");
