@@ -96,30 +96,6 @@ class Report {
         System.out.println("\nReport has been added.");
     }
 
-    private static void AddReport() {
-        try {
-            FCITEC.myWriter = new FileWriter("Reports.txt");
-            for (int i = 0; i < reports.size(); i++) {
-                Report report = reports.get(i);
-
-                String UserInfo = "Report Number: " + report.getReportNumber()
-                        + "\nName: " + report.getUser().getName()
-                        + "\nPhone Number: " + report.getUser().getPhoneNumber()
-                        + "\nID: " + report.getUser().getId()
-                        + "\nLocation: " + report.getLocation()
-                        + "\nDescription: " + report.getDescription()
-                        + "\nReport Status: " + report.getStatus();
-
-                FCITEC.myWriter.write(UserInfo);
-                FCITEC.myWriter.write("\n----------------------------------------------------------------\n");
-            }
-
-            FCITEC.myWriter.close();
-
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-    }
 
     public static void displayReports(int userID) {
         System.out.println("------------------------- Report Details -------------------------");
@@ -142,8 +118,11 @@ class Report {
 
     private static void printReportDetails(Report loopReport) {
         System.out.println("name: " + loopReport.getUser().getName()
-                + "\nPhone Number: " + loopReport.getUser().getPhoneNumber() + "\nID: " + loopReport.getUser().getId() + "\nReport Number: " + loopReport.getReportNumber()
-                + "\nLocation: " + loopReport.getLocation() + "\nDescription: " + loopReport.getDescription()
+                + "\nPhone Number: " + loopReport.getUser().getPhoneNumber() +
+                "\nID: " + loopReport.getUser().getId() + "\nReport Number: " + 
+                loopReport.getReportNumber()
+                + "\nLocation: " + loopReport.getLocation() + "\nDescription: " + 
+                loopReport.getDescription()
                 + "\nReport Status: " + loopReport.getStatus());
         System.out.println("\n----------------------------------------------------------------\n");
     }
@@ -162,47 +141,24 @@ class Report {
         Report reportToDelete = searchByReportID(reportNumberToDelete);
         if (reportToDelete != null) {
             reports.remove(reportToDelete);
-            updateFile(); // Update the file after removing the report
+           AddReport(); // Update the file after removing the report
             System.out.println("Report deleted successfully.");
-        } else {
+        } if ("Resolved".equals(reportToDelete.getStatus())){
+           System.out.println("This report is Resolved");
+
+        }
+        else {
             System.out.println("Report not found.");
         }
     }
-
-    private static void updateFile() {
-        try {
-            FileWriter myWriter = new FileWriter("Reports.txt");
-
-            // Iterate through the list of reports and update the file
-            for (Report report : reports) {
-                String reportInfo = generateReportInfo(report);
-                myWriter.write(reportInfo);
-                myWriter.write("\n----------------------------------------------------------------\n");
-            }
-
-            myWriter.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    private static String generateReportInfo(Report report) {
-        // Generate the information for a single report
-        return "Name: " + report.getUser().getName()
-                + "\nPhone Number: " + report.getUser().getPhoneNumber()
-                + "\nID: " + report.getUser().getId()
-                + "\nReport Number: " + report.getReportNumber()
-                + "\nLocation: " + report.getLocation()
-                + "\nDescription: " + report.getDescription()
-                + "\nReport Status: " + report.getStatus();
-    }
+    
 
     //change status by admin
-    public static void changeStatus(ArrayList<Report> reports, int reportNumberToChange) {
-        
-         // Search for the report based on the user input report number
-        Report reportToChangeStatus = searchByReportID(reportNumberToChange); //edit to one parameters 
-     
+    public static void changeStatus(int reportNumberToChange) {
+
+        // Search for the report based on the user input report number
+        Report reportToChangeStatus = searchByReportID(reportNumberToChange);
+
         //if the report was found
         if (reportToChangeStatus != null) {
 
@@ -222,30 +178,37 @@ class Report {
                     reportToChangeStatus.setStatus("Resolved");
                     System.out.println("Report status updated to Resolved.");
                     break;
+                default:
+                    System.out.println("Invalid choice. No changes made to the report status.");
             }
-            updateFileStatus(reports); // Update the file after changing the report status
+            AddReport();
         } else {//if the report was not found
-            System.out.println("Report"+ reportNumberToChange + "not found.");
+            System.out.println("Report not found.");
         }
     }
 
-    private static void updateFileStatus(ArrayList<Report> reports) {
+      private static void AddReport() {
         try {
-            FileWriter myWriter = new FileWriter("Reports.txt");
+            FCITEC.myWriter = new FileWriter("Reports.txt");
+            for (int i = 0; i < reports.size(); i++) {
+                Report report = reports.get(i);
 
-            // Iterate through the list of reports and update only the status in the file
-            for (Report report : reports) {
-                String updatedStatusInfo = "Report Number: " + report.getReportNumber()
-                        + "\nReport Status to: " + report.getStatus();
+                String UserInfo = "Report Number: " + report.getReportNumber()
+                        + "\nName: " + report.getUser().getName()
+                        + "\nPhone Number: " + report.getUser().getPhoneNumber()
+                        + "\nID: " + report.getUser().getId()
+                        + "\nLocation: " + report.getLocation()
+                        + "\nDescription: " + report.getDescription()
+                        + "\nReport Status: " + report.getStatus();
 
-                myWriter.write(updatedStatusInfo);
-                myWriter.write("\n----------------------------------------------------------------\n");
+                FCITEC.myWriter.write(UserInfo);
+                FCITEC.myWriter.write("\n----------------------------------------------------------------\n");
             }
-            myWriter.close();
-            System.out.println("\nReport status updated successfully.");
 
-        } catch (IOException e) {
-            e.printStackTrace();
+            FCITEC.myWriter.close();
+
+        } catch (IOException e1) {
+            e1.printStackTrace();
         }
     }
 }

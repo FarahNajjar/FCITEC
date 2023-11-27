@@ -29,7 +29,7 @@ public class FCITEC {
         start(userInfo.getId());
 
         do {
-            choice = in.next();
+            choice = in.next().toUpperCase();
             switch (choice) {
                 case "A":
                     Report.ReportInfo(userInfo);
@@ -45,7 +45,7 @@ public class FCITEC {
                 case "S": 
                     System.out.print("Please enter the report number: ");
                     reportNum = in.nextInt();
-                    Report.changeStatus(reports, reportNum);
+                    Report.changeStatus(reportNum);
                     break;
                 case "E":
                     System.out.println("Thank you for using the system, have a good day!");
