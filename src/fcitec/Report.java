@@ -175,14 +175,11 @@ class Report {
     }
 
     //change status by admin
-    public static void changeStatus(ArrayList<Report> reports) {
-        Scanner input = new Scanner(System.in);
-
-        System.out.print("Enter the report number to change status: ");
-        int reportNumberToChange = input.nextInt();
-
-        // Search for the report based on the user input report number
+    public static void changeStatus(ArrayList<Report> reports, int reportNumberToChange) {
+        
+         // Search for the report based on the user input report number
         Report reportToChangeStatus = searchByReportID(reports, reportNumberToChange);
+     
         //if the report was found
         if (reportToChangeStatus != null) {
 
@@ -190,6 +187,7 @@ class Report {
             System.out.println("1. Processing");
             System.out.println("2. Resolved");
 
+            Scanner input = new Scanner(System.in);
             int choice = input.nextInt();
 
             switch (choice) {
