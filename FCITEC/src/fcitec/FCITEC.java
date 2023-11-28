@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @author FARAH
  */
 public class FCITEC {
-
+//
     //create a scanner
     public static Scanner in = new Scanner(System.in);
     static FileWriter myWriter = null;
