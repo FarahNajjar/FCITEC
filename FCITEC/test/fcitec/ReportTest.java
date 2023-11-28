@@ -252,13 +252,39 @@ public class ReportTest {
      */
     @Test
     public void testReportInfo() {
-        System.out.println("ReportInfo");
-        User user = null;
-        Report.ReportInfo(user);
+        System.out.println("test Report Info");
+        User user = User("Aisha","0553535507","2105522");
+  
+        Report instance = new Report(21, "215F", "PANIC ATTACK", user, "new");
+  Report.ReportInfo(user);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
+    public static void ReportInfo(User user) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Location: ");
+        String location = input.next();
+        System.out.print("Description: ");
+        String description = input.next();
+
+        reports.add(info);
+        AddReport();
+        IDCounter++; // Increment IDCounter
+
+        System.out.println(info.toString());
+
+        System.out.println("\nReport has been added.");
+    }
+
+       public void testAddStore() {
+        ArrayList<Store> AddStore = new ArrayList<Store>();
+        Store instance = new Store("jawaher", "Ahmad", "0987654321",
+                "jawaherAhmad@gmail.com", "12", "Cake");
+        instance.AddStore(AddStore, instance);
+        assertNotNull(AddStore.get(0));
+    }
     /**
      * Test of toString method, of class Report.
      */

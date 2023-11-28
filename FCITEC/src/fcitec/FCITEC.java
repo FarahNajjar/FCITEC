@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class FCITEC {
 //
     //create a scanner
+
     public static Scanner in = new Scanner(System.in);
     static FileWriter myWriter = null;
 
@@ -22,7 +23,7 @@ public class FCITEC {
 
         //initialize choice
         String choice = null;
-
+        int reportNum;
         // ask user to log in by phone number,name, and ID
         User.userInfo();
         //print menu based on ID(if student or admin)
@@ -38,14 +39,18 @@ public class FCITEC {
                     Report.displayReports(userInfo.getId());
                     break;
                 case "D":
-                    System.out.print("Please enter the report number: ");
-                    int reportNum = in.nextInt();
-                    Report.deleteReport(reportNum);
+                    if (!isAdmin(userInfo.getId())) {
+                        System.out.print("Please enter the report number: ");
+                        reportNum = in.nextInt();
+                        Report.deleteReport(reportNum);
+                    }
                     break;
-                case "S": 
-                    System.out.print("Please enter the report number: ");
-                    reportNum = in.nextInt();
-                    Report.changeStatus(reportNum);
+                case "S":
+                    if (isAdmin(userInfo.getId())) {
+                        System.out.print("Please enter the report number: ");
+                        reportNum = in.nextInt();
+                        Report.changeStatus(reportNum);
+                    }
                     break;
                 case "E":
                     System.out.println("Thank you for using the system, have a good day!");
@@ -59,28 +64,22 @@ public class FCITEC {
         } while (true);
     }
 
-    //method to check if user is an admin or a student
-    public static boolean isAdmin(int ID) {
+    public static boolean isAdmin(String ID) {
 
-        String IDString = String.valueOf(ID);
-
-        // if the ID starts with 9, then it's an admin
-        if (IDString.startsWith("9")) {
+        // if the ID starts with '0', then it's an admin
+        if (ID.charAt(0) == '0') {
             return true;
         } else {
             return false;
         }
     }
 
-    public static void start(int ID) {
-        isAdmin(ID);
-        if (isAdmin(ID) == true) {
+    public static void start(String ID) {
+        if (isAdmin(ID)) {
             System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-FCIT Emergency Center(Admin)=-=-=-=-=-=-=-=-=-=-=-=-=-");
             System.out.println("What would you like to do?");
             System.out.println("V: view reports \nS: change a report's status \nE: exit\nL: log out");
-
-            //if student:
-        } else if (isAdmin(ID) == false) {
+        } else {
             System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-FCIT Emergency Center(Student)=-=-=-=-=-=-=-=-=-=-=-=-=-");
             System.out.println("What would you like to do?");
             System.out.println("A: Add a new report \nV: view reports \nD: delete a report \nE: exit\nL: log out");

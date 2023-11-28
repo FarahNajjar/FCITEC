@@ -8,7 +8,7 @@ package fcitec;
 public class Student extends User {
 
 
-    public Student(String StudentName, String PhoneNum, int ID) {
+    public Student(String StudentName, String PhoneNum, String ID) {
         super(StudentName, PhoneNum, ID);
     }
 }

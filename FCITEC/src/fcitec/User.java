@@ -13,10 +13,10 @@ public class User {
 
     private String name;
     private String phoneNumber;
-    private int id;
+    private String id;
 
     // Constructor
-    public User(String name, String phoneNumber, int id) {
+    public User(String name, String phoneNumber, String id) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.id = id;
@@ -31,7 +31,7 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -44,7 +44,7 @@ public class User {
         return phoneNumber;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
     
@@ -67,7 +67,7 @@ public class User {
         System.out.print("Enter your Phone Number: ");
         String PhoneNum = FCITEC.in.next();
         System.out.print("Enter your ID: ");
-        int ID = FCITEC.in.nextInt();
+        String ID = FCITEC.in.next();
         
            //check id
            if (FCITEC.isAdmin(ID)) {

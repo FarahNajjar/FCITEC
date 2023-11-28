@@ -72,7 +72,7 @@ class Report {
         this.user = user;
     }
 
-    public static void displayReports(int userID) {
+    public static void displayReports(String userID) {
         System.out.println("------------------------- Report Details -------------------------");
         String userIDString = String.valueOf(userID);
         // calling check isAdmin method
@@ -84,7 +84,7 @@ class Report {
         } else {
             for (int i = 0; i < reports.size(); i++) {
                 Report loopReport = reports.get(i);
-                if (loopReport.getUser().getId() == userID) {
+                if (loopReport.getUser().getId().equals(userID)) {
                     System.out.println(loopReport.toString());
                 }
             }
