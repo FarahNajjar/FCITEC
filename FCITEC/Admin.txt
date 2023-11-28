@@ -1,3 +1,0 @@
-name: AISHA
-Phone Number: 23456
-ID: 0987654
