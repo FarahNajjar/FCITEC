@@ -62,7 +62,6 @@ public class User {
     }
   
     static void userInfo() {
-      
         System.out.print("Enter your name: ");
         String UserName =  FCITEC.in.next();
         System.out.print("Enter your Phone Number: ");
