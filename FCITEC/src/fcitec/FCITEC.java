@@ -14,7 +14,7 @@ public class FCITEC {
 
     public static Scanner in = new Scanner(System.in);
     static FileWriter myWriter = null;
-
+   
     //create a user object to 
     static User userInfo;
     static ArrayList<Report> reports = new ArrayList<>();

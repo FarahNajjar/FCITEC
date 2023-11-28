@@ -1,9 +1,0 @@
-
-Report Number: 1
-Name: DS
-Phone Number: 2345
-ID: 32
-Location: D
-Description: D
-Report Status: new
-----------------------------------------------------------------
