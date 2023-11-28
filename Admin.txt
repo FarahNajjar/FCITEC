@@ -1,3 +1,0 @@
-name: HH
-Phone Number: 33
-ID: 97
