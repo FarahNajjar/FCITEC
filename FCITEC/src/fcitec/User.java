@@ -50,20 +50,6 @@ public class User {
     public int getId() {
         return id;
     }
-    
-  static void AddUser(User userData, String UserWriter) {
-        try {
-            userInfo = userData;
-            FCITEC.myWriter = new FileWriter(UserWriter);
-            FCITEC.myWriter.write(userInfo.toString());
-            FCITEC.myWriter.close();
-            System.out.println("\nNew user added successfully.");
-
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-    }
-  
     static void userInfo() {
         System.out.print("Enter your name: ");
         String UserName =  FCITEC.in.next();
@@ -81,7 +67,19 @@ public class User {
           AddUser(student, "Student.txt");
         }
     }
+  static void AddUser(User userData, String UserWriter) {
+        try {
+            userInfo = userData;
+            FCITEC.myWriter = new FileWriter(UserWriter);
+            FCITEC.myWriter.write(userInfo.toString());
+            FCITEC.myWriter.close();
+            System.out.println("\nNew user added successfully.");
 
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+    }
+  
     @Override
     public String toString() {
         return "name: " + name + "\nPhone Number: " + phoneNumber + "\nID: " + id;
