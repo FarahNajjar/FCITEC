@@ -1,3 +1,0 @@
-name: AISHA
-Phone Number: 234
-ID: 21
