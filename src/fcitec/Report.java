@@ -10,12 +10,14 @@ class Report {
     private static ArrayList<Report> reports = new ArrayList<>();
     private static int IDCounter = 1;
 
+    
     private int ReportNumber;
     private String Location;
     private String Description;
     private String Status;
     private User user;
-
+    
+    //CONSTRUCTOR
     public Report(int ReportNumber, String Location, String Description, User user, String Status) {
         this.ReportNumber = ReportNumber;
         this.Location = Location;
@@ -24,6 +26,7 @@ class Report {
         this.Status = Status;
     }
 
+    //------------------------|SETTERS & GETTERS|----------------------------//
     public static int getIDCounter() {
         return IDCounter;
     }
@@ -72,6 +75,7 @@ class Report {
         this.user = user;
     }
 
+    //----------------------------------------------------------------//
     public static void displayReports(String userID) {
         System.out.println("------------------------- Report Details -------------------------");
         String userIDString = String.valueOf(userID);
