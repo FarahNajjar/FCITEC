@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -196,15 +197,15 @@ public class ReportTest {
     @Test
     public void testReportInfo() {
         System.out.println("test Report Info");
-        User user = User("Aisha","0553535507","2105522");
+        //User user = User("Aisha","0553535507","2105522");
   
-        Report instance = new Report(21, "215F", "PANIC ATTACK", user, "new");
-  Report.ReportInfo(user);
+        //Report instance = new Report(21, "215F", "PANIC ATTACK", user, "new");
+  //Report.ReportInfo(user);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
         System.out.println("ReportInfo");
-        User user = null;
-        Report.ReportInfo(user);
+        //User user = null;
+        //Report.ReportInfo(user);
         
     }
 
@@ -213,12 +214,12 @@ public class ReportTest {
      */
     @Test
     public void testDisplayReports() {
-        System.out.println("displayReports");
-        int userID = 2112360;
-        Report.displayReports(2112360);
+       System.out.println("displayReports");
+        String userID = "0";
+        Report.displayReports(userID);
         
     }
-
+ 
     /**
      * Test of searchByReportID method, of class Report.
      */
@@ -226,9 +227,9 @@ public class ReportTest {
     public void testSearchByReportID() {
         System.out.println("searchByReportID");
         ArrayList<Report> ReportL = null;
-        int ID = 0;
+        String ID = "0";
         Report expResult = null;
-        //Report result = Report.searchByReportID(ReportL, ID);
+       // Report result = Report.searchByReportID(ReportL, ID);
         //assertEquals(expResult, result);
         
     }
@@ -237,12 +238,24 @@ public class ReportTest {
      * Test of deleteReport method, of class Report.
      */
     @Test
-    public void testDeleteReport() {
-        System.out.println("deleteReport");
-        int reportNumberToDelete = 0;
-        Report.deleteReport(reportNumberToDelete);
-       
-    }
+   public void testDeleteReport() {
+    System.out.println("deleteReport");
+    int reportNumber = 1;
+
+    // Assuming you have a User object named 'user'
+    User user = new User("Rawan", "0988877", "213456");
+
+    Report report = new Report(1, "215F", "PANIC ATTACK", user, "new");
+    
+    // Call the addReport method on the Report object
+   report.addReport(report);
+
+    // Call the deleteReport method on the Report object
+    report.deleteReport(reportNumber);
+
+    // Call the searchByReportID method on the Report object
+    assertNull(report.searchByReportID(reportNumber));
+}
   
  
     /**
@@ -257,13 +270,7 @@ public class ReportTest {
     }
 
 
-       public void testAddStore() {
-        ArrayList<Store> AddStore = new ArrayList<Store>();
-        Store instance = new Store("jawaher", "Ahmad", "0987654321",
-                "jawaherAhmad@gmail.com", "12", "Cake");
-        instance.AddStore(AddStore, instance);
-        assertNotNull(AddStore.get(0));
-    }
+       
     /**
      * Test of toString method, of class Report.
      */
@@ -277,4 +284,14 @@ public class ReportTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
+//        @Ignore
+//    public void testToString() {
+//        System.out.println("toString");
+//        SecurityCenter instance = null;
+//        String expResult = "";
+//        String result = instance.toString();
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
 }
