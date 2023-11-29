@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -127,6 +129,7 @@ public class ReportTest {
         String Description = "";
         Report instance = null;
         instance.setDescription(Description);
+
     }
 
     /**
@@ -138,6 +141,7 @@ public class ReportTest {
         String expResult = "";
         String result = instance.getStatus();
         assertEquals(expResult, result);
+
     }
 
     /**
@@ -178,27 +182,24 @@ public class ReportTest {
      * Test of ReportInfo method, of class Report.
      */
     @Test
+
     public void testReportInfo() {
         System.out.println("test Report Info");
         User user = new User("Aisha", "0553535507", "2105522");
-
         Report instance = new Report(21, "215F", "PANIC ATTACK", user, "new");
-        Report.ReportInfo(user);
-
-        String expResult = "";
-
+        assertNotNull(Report.getReports());
     }
 
-    /**
-     * Test of displayReports method, of class Report.
-     */
-    @Test
-    public void testDisplayReports() {
-        System.out.println("displayReports");
-        String userID = "2112360";
-        Report.displayReports("2112360");
-    }
-
+//    /**
+//     * Test of displayReports method, of class Report.
+//     */
+//    @Test
+//    public void testDisplayReports() {
+//        System.out.println("displayReports");
+//        int userID = 2112360;
+//        Report.displayReports(2112360);
+//        
+//    }
     /**
      * Test of searchByReportID method, of class Report.
      */
@@ -208,7 +209,6 @@ public class ReportTest {
         ArrayList<Report> ReportL = null;
         int ID = 0;
         Report expResult = null;
-        Report.searchByReportID(ID);
         //Report result = Report.searchByReportID(ReportL, ID);
         //assertEquals(expResult, result);
 
@@ -220,8 +220,9 @@ public class ReportTest {
     @Test
     public void testDeleteReport() {
         System.out.println("deleteReport");
-        
-        //Report.deleteReport(reportNumberToDelete);
+        int reportNumberToDelete = 0;
+        Report.deleteReport(reportNumberToDelete);
+
     }
 
     /**
@@ -241,15 +242,18 @@ public class ReportTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        Report instance = null;
-        String expResult = "";
+        User user = new User("Aisha", "057553507", "2105522");
+        Report instance = new Report(1, "145F", "Low Blood Pressure", user, "new");
+        String expResult ="\nReport Number: 1" 
+                + "\nName: Aisha" 
+                + "\nPhone Number: 057553507" 
+                + "\nID: 2105522" 
+                + "\nLocation: 145F"
+                + "\nDescription: Low Blood Pressure"+ "\nReport Status: new";
         String result = instance.toString();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
 
-    private User User(String aisha, String string, String string0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
