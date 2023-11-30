@@ -1,48 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package fcitec;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import org.junit.After;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-/**
- *
- * @author FARAH
- */
+
+
 public class ReportTest {
+    private Report testReport;
+    private static final String TEST_USER_ID = "testUserID";
 
-    public ReportTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
-
-    /**
-     * Test of getIDCounter method, of class Report.
-     */
+   
     public void testGetIDCounter() {
         System.out.println("getIDCounter");
         int expResult = 1;
@@ -183,7 +158,7 @@ public class ReportTest {
      */
     @Test
 
-    public void testReportInfo() {
+    public void testaddInfo() {
         System.out.println("test Report Info");
         User user = new User("Aisha", "0553535507", "2105522");
         Report instance = new Report(21, "215F", "PANIC ATTACK", user, "new");
@@ -210,21 +185,41 @@ public class ReportTest {
         int ID = 0;
         Report expResult = null;
         //Report result = Report.searchByReportID(ReportL, ID);
-        //assertEquals(expResult, result);
+        //assertNull(expResult, result);
 
     }
+    
+    
+    @Before
+    public void setUp() {
+        // Initialize a test report before each test
+        User testUser = new User(TEST_USER_ID, "Test User", "123456789");
+        testReport = new Report(1, "Test Location", "Test Description", testUser, "new");
+       
+        Report.setReports(new ArrayList<>()); // Ensure reports list is empty before each test
+    }
 
-    /**
-     * Test of deleteReport method, of class Report.
-     */
+    @After
+    public void restoreSystemInStream() {
+        // Restore System.in to the original stream after each test
+        System.setIn(System.in);
+    }
+
     @Test
-    public void testDeleteReport() {
-        System.out.println("deleteReport");
-        int reportNumberToDelete = 0;
-        Report.deleteReport(reportNumberToDelete);
+   public void testDeleteReport() {
+        Report.getReports().add(testReport);
 
+        // Redirect System.in to provide simulated user input
+        String input = "1\n"; // Assuming the report number to delete is 1
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        Report.deleteReport(testReport.getReportNumber());
+
+        assertTrue(Report.getReports().isEmpty());
     }
 
+    
     /**
      * Test of changeStatus method, of class Report.
      */
@@ -256,4 +251,8 @@ public class ReportTest {
         //fail("The test case is a prototype.");
     }
 
+
+   
+
+    
 }

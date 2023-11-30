@@ -33,7 +33,7 @@ public class FCITEC {
             choice = in.next().toUpperCase();
             switch (choice) {
                 case "A":
-                    Report.ReportInfo(userInfo);
+                    Report.addInfo(userInfo);
                     break;
                 case "V":
                     Report.displayReports(userInfo.getId());

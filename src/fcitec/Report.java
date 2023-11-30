@@ -24,6 +24,10 @@ class Report {
         this.user = user;
         this.Status = Status;
     }
+ //
+    public Report() {
+    }
+    
 
     public static int getIDCounter() {
         return IDCounter;
@@ -100,9 +104,9 @@ class Report {
         }
     }
 
-    public static Report searchByReportID(int ID) {
+    public static Report searchByReportNumber(int ReportNumber) {
         for (Report report : reports) {
-            if (report.getReportNumber() == ID) {
+            if (report.getReportNumber()== ReportNumber) {
                 return report;
             }
         }
@@ -111,7 +115,7 @@ class Report {
 
     //delete report by report number 
     public static void deleteReport(int reportNumberToDelete) {
-        Report reportToDelete = searchByReportID(reportNumberToDelete);
+        Report reportToDelete = searchByReportNumber(reportNumberToDelete);
         if (reportToDelete != null) {
             reports.remove(reportToDelete);
             WriteReport(); // Update the file after removing the report
@@ -128,7 +132,7 @@ class Report {
     public static void changeStatus(int reportNumberToChange) {
 
         // Search for the report based on the user input report number
-        Report reportToChangeStatus = searchByReportID(reportNumberToChange);
+        Report reportToChangeStatus = searchByReportNumber(reportNumberToChange);
 
         //if the report was found
         if (reportToChangeStatus != null) {
@@ -158,7 +162,7 @@ class Report {
         }
     }
 
-    public static void ReportInfo(User user) {
+    public static void addInfo(User user) {
         Scanner input = new Scanner(System.in);
 
         System.out.print("Location: ");
@@ -176,7 +180,7 @@ class Report {
         System.out.println("\nReport has been added.");
     }
 
-    private static void WriteReport() {
+   public static void WriteReport() {
         try {
             FCITEC.myWriter = new FileWriter("Reports.txt");
             for (int i = 0; i < reports.size(); i++) {
