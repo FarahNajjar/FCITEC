@@ -179,10 +179,10 @@ public class ReportTest {
      * Test of searchByReportID method, of class Report.
      */
     @Test
-    public void testSearchByReportID() {
-        System.out.println("searchByReportID");
+    public void testSearchByReportNumber() {
+        System.out.println("searchByReportNumber");
         ArrayList<Report> ReportL = null;
-        int ID = 0;
+        int ReportNumber = 0;
         Report expResult = null;
         //Report result = Report.searchByReportID(ReportL, ID);
         //assertNull(expResult, result);
