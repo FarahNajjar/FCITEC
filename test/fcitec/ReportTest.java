@@ -4,6 +4,7 @@ package fcitec;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -223,13 +224,28 @@ public class ReportTest {
     /**
      * Test of changeStatus method, of class Report.
      */
-    @Test
-    public void testChangeStatus() {
-        System.out.println("changeStatus");
-        ArrayList<Report> reports = null;
-        //Report.changeStatus(reports);
+ 
+   @Test
+public void testChangeStatus() {
+    System.out.println("changeStatus");
 
-    }
+    // Create a test report
+    User testUser = new User(TEST_USER_ID, "Test User", "111");
+    Report testReport = new Report(1, "Test Location", "Test Description", testUser, "new");
+    Report.getReports().add(testReport);
+
+    // Redirect System.in to provide simulated user input
+    String input = "2\n"; // Assuming the choice for "Resolved" is 2
+    InputStream in = new ByteArrayInputStream(input.getBytes());
+    Scanner scanner = new Scanner(in);
+
+    // Call the changeStatus method with the provided Scanner input
+    Report.changeStatus(testReport.getReportNumber(), scanner);
+
+    // Assert that the report status has been updated
+    assertEquals("Resolved", testReport.getStatus());
+}
+
 
     /**
      * Test of toString method, of class Report.

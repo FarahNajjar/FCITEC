@@ -49,7 +49,7 @@ public class FCITEC {
                     if (isAdmin(userInfo.getId())) {
                         System.out.print("Please enter the report number: ");
                         reportNum = in.nextInt();
-                        Report.changeStatus(reportNum);
+                        Report.changeStatus(reportNum, scanner);
                     }
                     break;
                 case "E":

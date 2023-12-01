@@ -129,7 +129,7 @@ class Report {
     }
 
     //change status by admin
-    public static void changeStatus(int reportNumberToChange) {
+    public static void changeStatus(int reportNumberToChange, Scanner scanner) {
 
         // Search for the report based on the user input report number
         Report reportToChangeStatus = searchByReportNumber(reportNumberToChange);
