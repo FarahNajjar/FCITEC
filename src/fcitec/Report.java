@@ -118,7 +118,7 @@ class Report {
         Report reportToDelete = searchByReportNumber(reportNumberToDelete);
         if (reportToDelete != null) {
             reports.remove(reportToDelete);
-            WriteReport(); // Update the file after removing the report
+             AddReport(); // Update the file after removing the report
             System.out.println("Report deleted successfully.");
         } else if ("Resolved".equals(reportToDelete.getStatus())) {
             System.out.println("This report is Resolved");
@@ -164,7 +164,7 @@ public static void changeStatus(int reportNumberToChange, Scanner input) {
                 System.out.println("Invalid choice. No changes made to the report status.");
         }
         // Write the updated reports to the file
-        WriteReport();
+       AddReport();
     } else { // If the report was not found
         System.out.println("Report not found.");
     }
@@ -181,7 +181,7 @@ public static void changeStatus(int reportNumberToChange, Scanner input) {
 
         Report info = new Report(IDCounter, location, description, user, "new");
         reports.add(info);
-        WriteReport();
+         AddReport();
         IDCounter++; // Increment IDCounter
 
         System.out.println(info.toString());
@@ -189,7 +189,7 @@ public static void changeStatus(int reportNumberToChange, Scanner input) {
         System.out.println("\nReport has been added.");
     }
 
-   public static void WriteReport() {
+   public static void AddReport() {
         try {
             FCITEC.myWriter = new FileWriter("Reports.txt");
             for (int i = 0; i < reports.size(); i++) {
