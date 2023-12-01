@@ -171,7 +171,7 @@ public static void changeStatus(int reportNumberToChange, Scanner input) {
 }
 
 
-    public static void addInfo(User user) {
+    public static void ReportInfo(User user) {
         Scanner input = new Scanner(System.in);
 
         System.out.print("Location: ");
