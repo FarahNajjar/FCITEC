@@ -128,39 +128,48 @@ class Report {
         }
     }
 
-    //change status by admin
-    public static void changeStatus(int reportNumberToChange, Scanner scanner) {
+ // Change the status of a report by admin
+public static void changeStatus(int reportNumberToChange, Scanner input) {
 
-        // Search for the report based on the user input report number
-        Report reportToChangeStatus = searchByReportNumber(reportNumberToChange);
+    // Search for the report based on the user input report number
+    Report reportToChangeStatus = searchByReportNumber(reportNumberToChange);
 
-        //if the report was found
-        if (reportToChangeStatus != null) {
+    // If the report was found
+    if (reportToChangeStatus != null) {
 
-            System.out.println("Choose a new status for the report:");
-            System.out.println("1. Processing");
-            System.out.println("2. Resolved");
+        // Display options for the new status
+        System.out.println("Choose a new status for the report:");
+        System.out.println("1. Processing");
+        System.out.println("2. Resolved");
+        
+        
+        Scanner admininput = new Scanner(System.in);
+        // Read the admin's choice from the provided Scanner input
+        int choice = admininput.nextInt();
 
-            Scanner input = new Scanner(System.in);
-            int choice = input.nextInt();
-
-            switch (choice) {
-                case 1:
-                    reportToChangeStatus.setStatus("Processing");
-                    System.out.println("Report status updated to Processing.");
-                    break;
-                case 2:
-                    reportToChangeStatus.setStatus("Resolved");
-                    System.out.println("Report status updated to Resolved.");
-                    break;
-                default:
-                    System.out.println("Invalid choice. No changes made to the report status.");
-            }
-            WriteReport();
-        } else {//if the report was not found
-            System.out.println("Report not found.");
+        // Process the chosen option
+        switch (choice) {
+            case 1:
+                // Update report status to "Processing"
+                reportToChangeStatus.setStatus("Processing");
+                System.out.println("Report status updated to Processing.");
+                break;
+            case 2:
+                // Update report status to "Resolved"
+                reportToChangeStatus.setStatus("Resolved");
+                System.out.println("Report status updated to Resolved.");
+                break;
+            default:
+                // Display a message for an invalid choice
+                System.out.println("Invalid choice. No changes made to the report status.");
         }
+        // Write the updated reports to the file
+        WriteReport();
+    } else { // If the report was not found
+        System.out.println("Report not found.");
     }
+}
+
 
     public static void addInfo(User user) {
         Scanner input = new Scanner(System.in);
