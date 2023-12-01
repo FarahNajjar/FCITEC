@@ -33,7 +33,7 @@ public class FCITEC {
             choice = in.next().toUpperCase();
             switch (choice) {
                 case "A":
-                    Report.ReportInfo(userInfo);
+                    Report.addInfo(userInfo);
                     break;
                 case "V":
                     Report.displayReports(userInfo.getId());
@@ -49,7 +49,7 @@ public class FCITEC {
                     if (isAdmin(userInfo.getId())) {
                         System.out.print("Please enter the report number: ");
                         reportNum = in.nextInt();
-                        Report.changeStatus(reportNum);
+                        Report.changeStatus(reportNum, in);
                     }
                     break;
                 case "E":

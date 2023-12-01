@@ -24,6 +24,10 @@ class Report {
         this.user = user;
         this.Status = Status;
     }
+ //
+    public Report() {
+    }
+    
 
     public static int getIDCounter() {
         return IDCounter;
@@ -69,18 +73,26 @@ class Report {
         return user;
     }
 
+    public static ArrayList<Report> getReports() {
+        return reports;
+    }
+
+    public static void setReports(ArrayList<Report> reports) {
+        Report.reports = reports;
+    }
+
     public void setUser(User user) {
         this.user = user;
     }
 
-    public static void displayReports(String userID) {
+    public static String displayReports(String userID) {
         System.out.println("------------------------- Report Details -------------------------");
-       
         // calling check isAdmin method
-        if (isAdmin(userID)) {        // Print all reports if the first character of the userIDString is '9' (ADMIN)
+        if (isAdmin(userID)) {
+            // Print all reports if the first character of the userIDString is '9' (ADMIN)
             for (int i = 0; i < reports.size(); i++) {
                 Report loopReport = reports.get(i);
-                    System.out.println(loopReport.toString());
+                System.out.println(loopReport.toString());
             }
         } else {
             for (int i = 0; i < reports.size(); i++) {
@@ -90,11 +102,13 @@ class Report {
                 }
             }
         }
+        return "\nAll reports have been displayed.";
+        
     }
-    
-    public static Report searchByReportID(int ID) {
+
+    public static Report searchByReportNumber(int ReportNumber) {
         for (Report report : reports) {
-            if (report.getReportNumber() == ID) {
+            if (report.getReportNumber()== ReportNumber) {
                 return report;
             }
         }
@@ -103,13 +117,12 @@ class Report {
 
     //delete report by report number 
     public static void deleteReport(int reportNumberToDelete) {
-        Report reportToDelete = searchByReportID(reportNumberToDelete);
+        Report reportToDelete = searchByReportNumber(reportNumberToDelete);
         if (reportToDelete != null) {
             reports.remove(reportToDelete);
             AddReport(); // Update the file after removing the report
             System.out.println("Report deleted successfully.");
-        }
-        if ("Resolved".equals(reportToDelete.getStatus())) {
+        } else if ("Resolved".equals(reportToDelete.getStatus())) {
             System.out.println("This report is Resolved");
 
         } else {
@@ -117,47 +130,56 @@ class Report {
         }
     }
 
-    //change status by admin
-    public static void changeStatus(int reportNumberToChange) {
+ // Change the status of a report by admin
+public static void changeStatus(int reportNumberToChange, Scanner input) {
 
-        // Search for the report based on the user input report number
-        Report reportToChangeStatus = searchByReportID(reportNumberToChange);
+    // Search for the report based on the user input report number
+    Report reportToChangeStatus = searchByReportNumber(reportNumberToChange);
 
-        //if the report was found
-        if (reportToChangeStatus != null) {
+    // If the report was found
+    if (reportToChangeStatus != null) {
 
-            System.out.println("Choose a new status for the report:");
-            System.out.println("1. Processing");
-            System.out.println("2. Resolved");
+        // Display options for the new status
+        System.out.println("Choose a new status for the report:");
+        System.out.println("1. Processing");
+        System.out.println("2. Resolved");
+        
+        
+        Scanner admininput = new Scanner(System.in);
+        // Read the admin's choice from the provided Scanner input
+        int choice = admininput.nextInt();
 
-            Scanner input = new Scanner(System.in);
-            int choice = input.nextInt();
-
-            switch (choice) {
-                case 1:
-                    reportToChangeStatus.setStatus("Processing");
-                    System.out.println("Report status updated to Processing.");
-                    break;
-                case 2:
-                    reportToChangeStatus.setStatus("Resolved");
-                    System.out.println("Report status updated to Resolved.");
-                    break;
-                default:
-                    System.out.println("Invalid choice. No changes made to the report status.");
-            }
-            AddReport();
-        } else {//if the report was not found
-            System.out.println("Report not found.");
+        // Process the chosen option
+        switch (choice) {
+            case 1:
+                // Update report status to "Processing"
+                reportToChangeStatus.setStatus("Processing");
+                System.out.println("Report status updated to Processing.");
+                break;
+            case 2:
+                // Update report status to "Resolved"
+                reportToChangeStatus.setStatus("Resolved");
+                System.out.println("Report status updated to Resolved.");
+                break;
+            default:
+                // Display a message for an invalid choice
+                System.out.println("Invalid choice. No changes made to the report status.");
         }
+        // Write the updated reports to the file
+        AddReport();
+    } else { // If the report was not found
+        System.out.println("Report not found.");
     }
+}
 
-    public static void ReportInfo(User user) {
+
+    public static void addInfo(User user) {
         Scanner input = new Scanner(System.in);
 
         System.out.print("Location: ");
-        String location = input.next();
+        String location = input.nextLine();
         System.out.print("Description: ");
-        String description = input.next();
+        String description = input.nextLine();
 
         Report info = new Report(IDCounter, location, description, user, "new");
         reports.add(info);
@@ -169,7 +191,7 @@ class Report {
         System.out.println("\nReport has been added.");
     }
 
-    private static void AddReport() {
+   public static void AddReport() {
         try {
             FCITEC.myWriter = new FileWriter("Reports.txt");
             for (int i = 0; i < reports.size(); i++) {
@@ -179,7 +201,7 @@ class Report {
                 FCITEC.myWriter.write("\n----------------------------------------------------------------\n");
             }
             FCITEC.myWriter.close();
-            
+
         } catch (IOException e1) {
             e1.printStackTrace();
         }
