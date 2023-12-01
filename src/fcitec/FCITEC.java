@@ -1,7 +1,6 @@
 package fcitec;
 
 import java.io.FileWriter;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -17,7 +16,7 @@ public class FCITEC {
    
     //create a user object to 
     static User userInfo;
-    static ArrayList<Report> reports = new ArrayList<>();
+    
 
     public static void main(String[] args) {
 
